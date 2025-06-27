@@ -1,18 +1,18 @@
 import { firebaseAuth } from "@/src/config/firebase";
 import { signInWithEmailAndPassword, signOut, updatePassword } from "firebase/auth";
+import HTTPRequestAPI from "../http-request";
 
 export type BackendUserRole = "STUDENT" | "ACCUSER" | "DEPT_OF_JUSTICE" | "ADMIN";
 
 export interface BackendUser {
   _id: string; // id offered by firestore
-  firebase_uid: string; // id offered by firebase authentication
+  firebaseUID: string; // id offered by firebase authentication
   role: BackendUserRole;
   name: string;
   studentNumber?: number;
   schoolPoints?: number;
   dormPoints?: number;
   rewardPoints?: number;
-  totalPoints?: number;
   hasCourt?: boolean;
 }
 
@@ -20,6 +20,7 @@ const UserAPI: {
   signUserIn: Function;
   signUserOut: Function;
   changeUserPassword: Function;
+  getCurrentUserInfo: Function;
 } = {
   signUserIn: async (email: string, password: string) => {
     try {
@@ -44,6 +45,14 @@ const UserAPI: {
       return await updatePassword(firebaseAuth.currentUser, newPassword);
     } catch (e) {
       console.error("UserAPI: changeUserPassword Func: ", e);
+      throw e;
+    }
+  },
+  getCurrentUserInfo: async (accessToken: string): Promise<BackendUser> => {
+    try {
+      return await HTTPRequestAPI.private.get("/api/user", accessToken);
+    } catch (e) {
+      console.error("UserAPI: getCurrentUserInfo Func: ", e);
       throw e;
     }
   },
