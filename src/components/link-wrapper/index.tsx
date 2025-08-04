@@ -1,7 +1,6 @@
-import { useLinkProps } from '@react-navigation/native';
-import { ReactNode } from 'react';
-// import { useState } from 'react';
-import { Pressable, PressableProps } from 'react-native';
+import { ReactNode } from "react";
+import { Pressable, PressableProps } from "react-native";
+import { useLinkProps } from "@react-navigation/native";
 
 type LinkButtonProps = {
   screen?: string;
@@ -13,7 +12,7 @@ type LinkButtonProps = {
 
 /* Actions would be normally ignored or malfunctioned with web use */
 export default function LinkWrapper({
-  screen = '',
+  screen = "",
   params = {},
   action,
   href,

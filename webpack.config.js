@@ -1,38 +1,38 @@
-const path = require('path');
+const path = require("path");
 
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const appDirectory = path.resolve(__dirname);
 const { presets } = require(`${appDirectory}/babel.config.js`);
 
 const compileNodeModules = [
   // Add every react-native package that needs compiling
-  '@react-navigation',
-  'react-native',
-  'react-native-web',
-  'react-native-safe-area-context',
-  'react-native-screens',
+  "@react-navigation",
+  "react-native",
+  "react-native-web",
+  "react-native-safe-area-context",
+  "react-native-screens",
   // "react-native-reanimated",
   // "react-native-worklets",
-  'react-native-svg',
+  "react-native-svg",
 ].map(moduleName => path.resolve(appDirectory, `node_modules/${moduleName}`));
 
 const babelLoaderConfiguration = {
   test: /\.[jt]sx?$/,
   // Add every directory that needs to be compiled by Babel during the build.
   include: [
-    path.resolve(appDirectory, 'index.web.js'), // Entry to your application
-    path.resolve(appDirectory, 'App.tsx'), // Change this to your main App file --> .web.ts files are prioritized
-    path.resolve(appDirectory, 'src'), // all src elements are prebuild
+    path.resolve(appDirectory, "index.web.js"), // Entry to your application
+    path.resolve(appDirectory, "App.tsx"), // Change this to your main App file --> .web.ts files are prioritized
+    path.resolve(appDirectory, "src"), // all src elements are prebuild
     ...compileNodeModules,
   ],
   use: {
-    loader: 'babel-loader',
+    loader: "babel-loader",
     options: {
       cacheDirectory: true,
       presets,
-      plugins: ['react-native-web'],
+      plugins: ["react-native-web"],
     },
   },
 };
@@ -41,7 +41,7 @@ const svgLoaderConfiguration = {
   test: /\.svg$/,
   use: [
     {
-      loader: '@svgr/webpack',
+      loader: "@svgr/webpack",
     },
   ],
 };
@@ -49,16 +49,16 @@ const svgLoaderConfiguration = {
 const imageLoaderConfiguration = {
   test: /\.(gif|jpe?g|png)$/,
   use: {
-    loader: 'url-loader',
+    loader: "url-loader",
     options: {
-      name: '[name].[ext]',
+      name: "[name].[ext]",
     },
   },
 };
 
 module.exports = {
   entry: {
-    app: path.join(appDirectory, 'index.web.js'),
+    app: path.join(appDirectory, "index.web.js"),
   },
   /* devServer is to match links to fallback to index.html for unknown requests --> when deploying this should be configured in deployment MUST */
   /* This configuration is only for dev --> Deploying requires additional attention */
@@ -66,55 +66,55 @@ module.exports = {
     historyApiFallback: true,
   },
   output: {
-    path: path.resolve(appDirectory, 'dist'),
-    publicPath: '/',
-    filename: 'rnw_blogpost.bundle.js',
+    path: path.resolve(appDirectory, "dist"),
+    publicPath: "/",
+    filename: "rnw_blogpost.bundle.js",
   },
   resolve: {
     /* When writing platform specific code adding .web. makes webpack prefer this over others */
     extensions: [
-      '.web.tsx',
-      '.web.ts',
-      '.web.jsx',
-      '.web.js',
-      '.tsx',
-      '.ts',
-      '.jsx',
-      '.js',
-      '.d.ts',
+      ".web.tsx",
+      ".web.ts",
+      ".web.jsx",
+      ".web.js",
+      ".tsx",
+      ".ts",
+      ".jsx",
+      ".js",
+      ".d.ts",
     ], // build resolved in this order
     alias: {
-      'react-native$': 'react-native-web',
+      "react-native$": "react-native-web",
       /* React navigation patch --> these do not resolve correctly, since the default of package.json is lib/module, which is not correct */
-      '@react-navigation/core': path.resolve(
+      "@react-navigation/core": path.resolve(
         appDirectory,
-        'node_modules/@react-navigation/core',
-        'src/index.tsx'
+        "node_modules/@react-navigation/core",
+        "src/index.tsx"
       ),
-      '@react-navigation/elements': path.resolve(
+      "@react-navigation/elements": path.resolve(
         appDirectory,
-        'node_modules/@react-navigation/elements',
-        'src/index.tsx'
+        "node_modules/@react-navigation/elements",
+        "src/index.tsx"
       ),
-      '@react-navigation/native': path.resolve(
+      "@react-navigation/native": path.resolve(
         appDirectory,
-        'node_modules/@react-navigation/native',
-        'src/index.tsx'
+        "node_modules/@react-navigation/native",
+        "src/index.tsx"
       ),
-      '@react-navigation/native-stack': path.resolve(
+      "@react-navigation/native-stack": path.resolve(
         appDirectory,
-        'node_modules/@react-navigation/native-stack',
-        'src/index.tsx'
+        "node_modules/@react-navigation/native-stack",
+        "src/index.tsx"
       ),
-      '@react-navigation/routers': path.resolve(
+      "@react-navigation/routers": path.resolve(
         appDirectory,
-        'node_modules/@react-navigation/routers',
-        'src/index.tsx'
+        "node_modules/@react-navigation/routers",
+        "src/index.tsx"
       ),
       /************************************************************/
-      '@': path.resolve(appDirectory), // resolve alias during building
+      "@": path.resolve(appDirectory), // resolve alias during building
     },
-    modules: [path.resolve(appDirectory, 'node_modules'), 'node_modules'],
+    modules: [path.resolve(appDirectory, "node_modules"), "node_modules"],
   },
   module: {
     rules: [
@@ -125,7 +125,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(appDirectory, 'index.html'),
+      template: path.join(appDirectory, "index.html"),
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({

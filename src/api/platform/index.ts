@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { Platform } from "react-native";
 
 /* All platform specific api app operations go here */
 const PlatformAPI: { getCurrentPlatform: Function } = {

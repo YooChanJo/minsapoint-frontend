@@ -1,6 +1,6 @@
 /* Firebase functionalities should be split between web and mobile */
-import { getApp } from '@react-native-firebase/app';
-import { getAuth } from '@react-native-firebase/auth';
+import { getApp } from "@react-native-firebase/app";
+import { getAuth } from "@react-native-firebase/auth";
 
 /* firebase.json configured for multithreading(?) in android environments */
 /* 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 const NavigationAPI: { useCompatibleEffect: Function } = {
   /* A useEffect tool for all platforms */

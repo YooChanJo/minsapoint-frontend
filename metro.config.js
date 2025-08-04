@@ -1,5 +1,5 @@
-const path = require('path');
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+const path = require("path");
+const { getDefaultConfig, mergeConfig } = require("@react-native/metro-config");
 
 /**
  * Metro configuration
@@ -13,7 +13,7 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const config = mergeConfig(getDefaultConfig(__dirname), {
   resolver: {
     extraNodeModules: {
-      'react-dom': path.resolve(__dirname, 'shims/react-dom.js'),
+      "react-dom": path.resolve(__dirname, "shims/react-dom.js"),
     },
   },
 });

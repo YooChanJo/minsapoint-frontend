@@ -1,41 +1,41 @@
-// import React from "react";
-import { NavigationContainer, StackActions } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Text, View } from 'react-native';
+/* Vendors */
+import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Text, View } from "react-native";
 
-/* Configurations */
-import { AppLinking } from './src/config/deep-linking';
+/* Configs */
+import { AppLinking } from "./src/config/deep-linking";
 
-/* Apis */
-import PlatformAPI from './src/api/platform';
-import NavigationAPI from './src/api/navigation';
+/* APIs */
+import PlatformAPI from "./src/api/platform";
+import NavigationAPI from "./src/api/navigation";
 
 /* Components */
-import LinkWrapper from './src/components/link-wrapper';
+import LinkWrapper from "./src/components/link-wrapper";
 
 /* Screens */
-import { AuthProvider, useAuth } from './src/components/auth-provider';
-import NotFoundScreen from './src/screens/not-found';
-import LoginScreen from './src/screens/login';
+import { AuthProvider, useAuth } from "./src/components/auth-provider";
+import NotFoundScreen from "./src/screens/not-found";
+import LoginScreen from "./src/screens/login";
 
 function HomeScreen() {
-  const authValue = useAuth();
+  const { userLoggedIn, accessToken } = useAuth();
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Welcome to Home Screen</Text>
       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
-        <Text>User Logged In: {String(authValue.userLoggedIn)}</Text>
-        <Text>AccessToken: {authValue.accessToken}</Text>
+        <Text>User Logged In: {String(userLoggedIn)}</Text>
+        <Text>AccessToken: {accessToken}</Text>
       </View>
       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
         <LinkWrapper screen="Login">
-          <Text style={{ color: 'blue' }}>Go to Login screen</Text>
+          <Text style={{ color: "blue" }}>Go to Login screen</Text>
         </LinkWrapper>
       </View>
       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
-        <LinkWrapper screen="PlatformCheck" params={{ myParam: 'Hello World' }}>
-          <Text style={{ color: 'blue' }}>Go to PlatformCheck</Text>
+        <LinkWrapper screen="PlatformCheck" params={{ myParam: "Hello World" }}>
+          <Text style={{ color: "blue" }}>Go to PlatformCheck</Text>
         </LinkWrapper>
       </View>
     </View>
@@ -46,17 +46,17 @@ function PlatformCheckScreen({ route }: { route: any }) {
   const { myParam } = route.params;
 
   NavigationAPI.useCompatibleEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
       .then(response => response.json())
-      .then(json => console.log(json));
+      .then(json => alert(JSON.stringify(json)));
   }, []);
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Your platform is: {PlatformAPI.getCurrentPlatform()}</Text>
       <Text>My param is: {myParam}</Text>
-      <LinkWrapper screen="Home" action={StackActions.popTo('Home')}>
-        <Text>Go Back</Text>
+      <LinkWrapper screen="Home" action={StackActions.popTo("Home")}>
+        <Text style={{ color: "blue" }}>Go Back</Text>
       </LinkWrapper>
     </View>
   );
@@ -71,7 +71,7 @@ function RootStack() {
       <Stack.Screen
         name="PlatformCheck"
         component={PlatformCheckScreen}
-        initialParams={{ myParam: 'My Param' }}
+        initialParams={{ myParam: "My Param" }}
       />
 
       <Stack.Screen name="Login" component={LoginScreen} />
