@@ -1,123 +1,119 @@
 // import React from "react";
-// import { GluestackUIProvider } from "@/src/components/ui/gluestack-ui-provider";
-// import { NavigationContainer, StackActions } from "@react-navigation/native";
-// import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import { SafeAreaProvider } from "react-native-safe-area-context";
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Text, View } from 'react-native';
 
-// /* Configurations */
-// import { AppLinking } from "./src/config/deep-linking";
+/* Configurations */
+import { AppLinking } from './src/config/deep-linking';
 
-// /* Apis */
-// import PlatformAPI from "./src/api/platform";
-// import NavigationAPI from "./src/api/navigation";
+/* Apis */
+import PlatformAPI from './src/api/platform';
+import NavigationAPI from './src/api/navigation';
 
-// /* Components */
-// import LinkWrapper from "./src/components/link-wrapper";
+/* Components */
+import LinkWrapper from './src/components/link-wrapper';
 
-// /* Screens */
-// import { AuthProvider, useAuth } from "./src/components/auth-provider";
-// import NotFoundScreen from "./src/screens/not-found";
-// import LoginScreen from "./src/screens/login";
+/* Screens */
+import { AuthProvider, useAuth } from './src/components/auth-provider';
+import NotFoundScreen from './src/screens/not-found';
+import LoginScreen from './src/screens/login';
 
-// function HomeScreen() {
-//   const authValue = useAuth();
-//   return (
-//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-//       <Text>Welcome to Home Screen</Text>
-//       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
-//         <Text>User Logged In: {String(authValue.userLoggedIn)}</Text>
-//         <Text>AccessToken: {authValue.accessToken}</Text>
-//       </View>
-//       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
-//         <LinkWrapper screen="Login">
-//           <Text style={{ color: "blue" }}>Go to Login screen</Text>
-//         </LinkWrapper>
-//       </View>
-//       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
-//         <LinkWrapper screen="PlatformCheck" params={{ myParam: "Hello World" }}>
-//           <Text style={{ color: "blue" }}>Go to PlatformCheck</Text>
-//         </LinkWrapper>
-//       </View>
-//     </View>
-//   );
-// }
-
-// function PlatformCheckScreen({ route }: { route: any }) {
-//   const { myParam } = route.params;
-
-//   NavigationAPI.useCompatibleEffect(() => {
-//     fetch("https://jsonplaceholder.typicode.com/todos/1")
-//       .then(response => response.json())
-//       .then(json => console.log(json));
-//   }, []);
-
-//   return (
-//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-//       <Text>Your platform is: {PlatformAPI.getCurrentPlatform()}</Text>
-//       <Text>My param is: {myParam}</Text>
-//       <LinkWrapper screen="Home" action={StackActions.popTo("Home")}>
-//         <Text>Go Back</Text>
-//       </LinkWrapper>
-//     </View>
-//   );
-// }
-
-// const Stack = createNativeStackNavigator();
-// function RootStack() {
-//   return (
-//     /* Debug screens */
-//     <Stack.Navigator>
-//       <Stack.Screen name="Home" component={HomeScreen} />
-//       <Stack.Screen
-//         name="PlatformCheck"
-//         component={PlatformCheckScreen}
-//         initialParams={{ myParam: "My Param" }}
-//       />
-
-//       <Stack.Screen name="Login" component={LoginScreen} />
-//       <Stack.Screen name="NotFound" component={NotFoundScreen} />
-//     </Stack.Navigator>
-//   );
-// }
-
-// /* Manually toggling all of light mode, but would want to use both light & dark mode */
-// function App() {
-//   return (
-//     <SafeAreaProvider>
-//       <GluestackUIProvider>
-//         <NavigationContainer
-//           linking={AppLinking}
-//           fallback={<Text>Loading...</Text>}
-//         >
-//           <AuthProvider>
-//             <RootStack />
-//           </AuthProvider>
-//         </NavigationContainer>
-//       </GluestackUIProvider>
-//     </SafeAreaProvider>
-//   );
-// }
-
-/* Debug App screen */
-function App() {
-  // NavigationAPI.useCompatibleEffect(() => {
-  //   fetch('https://jsonplaceholder.typicode.com/todos/1')
-  //     .then(response => response.json())
-  //     .then(json => console.log(json))
-  // }, []);
+function HomeScreen() {
+  const authValue = useAuth();
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Hello world</Text>
+      <Text>Welcome to Home Screen</Text>
+      <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
+        <Text>User Logged In: {String(authValue.userLoggedIn)}</Text>
+        <Text>AccessToken: {authValue.accessToken}</Text>
+      </View>
+      <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
+        <LinkWrapper screen="Login">
+          <Text style={{ color: 'blue' }}>Go to Login screen</Text>
+        </LinkWrapper>
+      </View>
+      <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
+        <LinkWrapper screen="PlatformCheck" params={{ myParam: 'Hello World' }}>
+          <Text style={{ color: 'blue' }}>Go to PlatformCheck</Text>
+        </LinkWrapper>
+      </View>
     </View>
+  );
+}
+
+function PlatformCheckScreen({ route }: { route: any }) {
+  const { myParam } = route.params;
+
+  NavigationAPI.useCompatibleEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+      .then(response => response.json())
+      .then(json => console.log(json));
+  }, []);
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Your platform is: {PlatformAPI.getCurrentPlatform()}</Text>
+      <Text>My param is: {myParam}</Text>
+      <LinkWrapper screen="Home" action={StackActions.popTo('Home')}>
+        <Text>Go Back</Text>
+      </LinkWrapper>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+function RootStack() {
+  return (
+    /* Debug screens */
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="PlatformCheck"
+        component={PlatformCheckScreen}
+        initialParams={{ myParam: 'My Param' }}
+      />
+
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="NotFound" component={NotFoundScreen} />
+    </Stack.Navigator>
+  );
+}
+
+/* Manually toggling all of light mode, but would want to use both light & dark mode */
+function App() {
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer
+        linking={AppLinking}
+        fallback={<Text>Loading...</Text>}
+      >
+        <AuthProvider>
+          <RootStack />
+        </AuthProvider>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
 export default App;
 
+/* Debug App screen */
+// function App() {
+//   // NavigationAPI.useCompatibleEffect(() => {
+//   //   fetch('https://jsonplaceholder.typicode.com/todos/1')
+//   //     .then(response => response.json())
+//   //     .then(json => console.log(json))
+//   // }, []);
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Hello world</Text>
+//     </View>
+//   );
+// }
 /* 
   TODO for deployment
-  Add new SHA-1 signing for google auth of firebase ---> deploy
+  Add new SHA-1 signing for google auth of firebase ---> deploy if we are going to use google login
 */
 
 /* Stack Navigator only registers screens --> these are stacked */

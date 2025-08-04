@@ -8,15 +8,14 @@ const { presets } = require(`${appDirectory}/babel.config.js`);
 
 const compileNodeModules = [
   // Add every react-native package that needs compiling
-  // "@react-navigation",
+  '@react-navigation',
   'react-native',
-  // "react-native-css-interop",
-  // "react-native-safe-area-context",
-  // "react-native-screens",
-  // "react-native-gesture-handler",
-  // "react-native-reanimated",
-  // "react-native-svg",
   'react-native-web',
+  'react-native-safe-area-context',
+  'react-native-screens',
+  // "react-native-reanimated",
+  // "react-native-worklets",
+  'react-native-svg',
 ].map(moduleName => path.resolve(appDirectory, `node_modules/${moduleName}`));
 
 const babelLoaderConfiguration = {
@@ -25,8 +24,7 @@ const babelLoaderConfiguration = {
   include: [
     path.resolve(appDirectory, 'index.web.js'), // Entry to your application
     path.resolve(appDirectory, 'App.tsx'), // Change this to your main App file --> .web.ts files are prioritized
-    // path.resolve(appDirectory, "src"), // all src elements are prebuild
-    // path.resolve(appDirectory, "app-linking.ts"), // the linking structure info of app
+    path.resolve(appDirectory, 'src'), // all src elements are prebuild
     ...compileNodeModules,
   ],
   use: {
@@ -62,11 +60,11 @@ module.exports = {
   entry: {
     app: path.join(appDirectory, 'index.web.js'),
   },
-  // /* devServer is to match links to fallback to index.html for unknown requests --> when deploying this should be configured in deployment MUST */
-  // /* This configuration is only for dev --> Deploying requires additional attention */
-  // devServer: {
-  //   historyApiFallback: true,
-  // },
+  /* devServer is to match links to fallback to index.html for unknown requests --> when deploying this should be configured in deployment MUST */
+  /* This configuration is only for dev --> Deploying requires additional attention */
+  devServer: {
+    historyApiFallback: true,
+  },
   output: {
     path: path.resolve(appDirectory, 'dist'),
     publicPath: '/',
@@ -87,33 +85,33 @@ module.exports = {
     ], // build resolved in this order
     alias: {
       'react-native$': 'react-native-web',
-      // /* React navigation patch --> these do not resolve correctly, since the default of package.json is lib/module, which is not correct */
-      // "@react-navigation/core": path.resolve(
-      //   appDirectory,
-      //   "node_modules/@react-navigation/core",
-      //   "src/index.tsx"
-      // ),
-      // "@react-navigation/elements": path.resolve(
-      //   appDirectory,
-      //   "node_modules/@react-navigation/elements",
-      //   "src/index.tsx"
-      // ),
-      // "@react-navigation/native": path.resolve(
-      //   appDirectory,
-      //   "node_modules/@react-navigation/native",
-      //   "src/index.tsx"
-      // ),
-      // "@react-navigation/native-stack": path.resolve(
-      //   appDirectory,
-      //   "node_modules/@react-navigation/native-stack",
-      //   "src/index.tsx"
-      // ),
-      // "@react-navigation/routers": path.resolve(
-      //   appDirectory,
-      //   "node_modules/@react-navigation/routers",
-      //   "src/index.tsx"
-      // ),
-      // /************************************************************/
+      /* React navigation patch --> these do not resolve correctly, since the default of package.json is lib/module, which is not correct */
+      '@react-navigation/core': path.resolve(
+        appDirectory,
+        'node_modules/@react-navigation/core',
+        'src/index.tsx'
+      ),
+      '@react-navigation/elements': path.resolve(
+        appDirectory,
+        'node_modules/@react-navigation/elements',
+        'src/index.tsx'
+      ),
+      '@react-navigation/native': path.resolve(
+        appDirectory,
+        'node_modules/@react-navigation/native',
+        'src/index.tsx'
+      ),
+      '@react-navigation/native-stack': path.resolve(
+        appDirectory,
+        'node_modules/@react-navigation/native-stack',
+        'src/index.tsx'
+      ),
+      '@react-navigation/routers': path.resolve(
+        appDirectory,
+        'node_modules/@react-navigation/routers',
+        'src/index.tsx'
+      ),
+      /************************************************************/
       '@': path.resolve(appDirectory), // resolve alias during building
     },
     modules: [path.resolve(appDirectory, 'node_modules'), 'node_modules'],
