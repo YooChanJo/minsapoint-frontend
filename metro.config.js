@@ -1,3 +1,4 @@
+const path = require('path');
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
 /**
@@ -6,6 +7,15 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
  *
  * @type {import('@react-native/metro-config').MetroConfig}
  */
-const config = {};
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+/* Metro bundler is only run in mobile */
+/* Resolving for shimmed react dom --> only for mobile */
+const config = mergeConfig(getDefaultConfig(__dirname), {
+  resolver: {
+    extraNodeModules: {
+      'react-dom': path.resolve(__dirname, 'shims/react-dom.js'),
+    },
+  },
+});
+
+module.exports = config;

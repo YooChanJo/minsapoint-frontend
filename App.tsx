@@ -1,28 +1,191 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// import React from "react";
+// import { GluestackUIProvider } from "@/src/components/ui/gluestack-ui-provider";
+// import { NavigationContainer, StackActions } from "@react-navigation/native";
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Text, View } from 'react-native';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+// /* Configurations */
+// import { AppLinking } from "./src/config/deep-linking";
 
+// /* Apis */
+// import PlatformAPI from "./src/api/platform";
+// import NavigationAPI from "./src/api/navigation";
+
+// /* Components */
+// import LinkWrapper from "./src/components/link-wrapper";
+
+// /* Screens */
+// import { AuthProvider, useAuth } from "./src/components/auth-provider";
+// import NotFoundScreen from "./src/screens/not-found";
+// import LoginScreen from "./src/screens/login";
+
+// function HomeScreen() {
+//   const authValue = useAuth();
+//   return (
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+//       <Text>Welcome to Home Screen</Text>
+//       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
+//         <Text>User Logged In: {String(authValue.userLoggedIn)}</Text>
+//         <Text>AccessToken: {authValue.accessToken}</Text>
+//       </View>
+//       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
+//         <LinkWrapper screen="Login">
+//           <Text style={{ color: "blue" }}>Go to Login screen</Text>
+//         </LinkWrapper>
+//       </View>
+//       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
+//         <LinkWrapper screen="PlatformCheck" params={{ myParam: "Hello World" }}>
+//           <Text style={{ color: "blue" }}>Go to PlatformCheck</Text>
+//         </LinkWrapper>
+//       </View>
+//     </View>
+//   );
+// }
+
+// function PlatformCheckScreen({ route }: { route: any }) {
+//   const { myParam } = route.params;
+
+//   NavigationAPI.useCompatibleEffect(() => {
+//     fetch("https://jsonplaceholder.typicode.com/todos/1")
+//       .then(response => response.json())
+//       .then(json => console.log(json));
+//   }, []);
+
+//   return (
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+//       <Text>Your platform is: {PlatformAPI.getCurrentPlatform()}</Text>
+//       <Text>My param is: {myParam}</Text>
+//       <LinkWrapper screen="Home" action={StackActions.popTo("Home")}>
+//         <Text>Go Back</Text>
+//       </LinkWrapper>
+//     </View>
+//   );
+// }
+
+// const Stack = createNativeStackNavigator();
+// function RootStack() {
+//   return (
+//     /* Debug screens */
+//     <Stack.Navigator>
+//       <Stack.Screen name="Home" component={HomeScreen} />
+//       <Stack.Screen
+//         name="PlatformCheck"
+//         component={PlatformCheckScreen}
+//         initialParams={{ myParam: "My Param" }}
+//       />
+
+//       <Stack.Screen name="Login" component={LoginScreen} />
+//       <Stack.Screen name="NotFound" component={NotFoundScreen} />
+//     </Stack.Navigator>
+//   );
+// }
+
+// /* Manually toggling all of light mode, but would want to use both light & dark mode */
+// function App() {
+//   return (
+//     <SafeAreaProvider>
+//       <GluestackUIProvider>
+//         <NavigationContainer
+//           linking={AppLinking}
+//           fallback={<Text>Loading...</Text>}
+//         >
+//           <AuthProvider>
+//             <RootStack />
+//           </AuthProvider>
+//         </NavigationContainer>
+//       </GluestackUIProvider>
+//     </SafeAreaProvider>
+//   );
+// }
+
+/* Debug App screen */
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+  // NavigationAPI.useCompatibleEffect(() => {
+  //   fetch('https://jsonplaceholder.typicode.com/todos/1')
+  //     .then(response => response.json())
+  //     .then(json => console.log(json))
+  // }, []);
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Hello world</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
 export default App;
+
+/* 
+  TODO for deployment
+  Add new SHA-1 signing for google auth of firebase ---> deploy
+*/
+
+/* Stack Navigator only registers screens --> these are stacked */
+/* 
+  To add a screen unless it is same as current screen: navigation.navigate(SCREEN_NAME, {PARAMS})
+  To add a screen regardless of current screen: navigation.push(SCREEN_NAME)
+  go back: navigation.goBack()
+  pop to: navigation.popTo(SCREEN_NAME)
+  pop to top: navigation.popToTop()
+  
+  // Example
+  <Stack.Navigator>
+    {isLoggedIn ? (
+      // Screens for logged in users
+      <Stack.Group>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Profile" component={Profile} />
+      </Stack.Group>
+    ) : (
+      // Auth screens
+      <Stack.Group screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+      </Stack.Group>
+    )}
+      // Common modal screens
+    <Stack.Group screenOptions={{ presentation: 'modal' }}>
+      <Stack.Screen name="Help" component={Help} />
+      <Stack.Screen name="Invite" component={Invite} />
+    </Stack.Group>
+  </Stack.Navigator>
+*/
+/* Navigation Ref for using navigation feature where useNavigation is not available */
+
+// function Feed() {
+//   return (
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+//       <Text>Feed</Text>
+//       <LinkWrapper screen="Messages" action={StackActions.popTo("Messages")}>
+//         <Text>Go to Messages</Text>
+//       </LinkWrapper>
+//       <LinkWrapper screen="Home" action={StackActions.popTo("Home")}>
+//         <Text>Go Back</Text>
+//       </LinkWrapper>
+//     </View>
+//   );
+// }
+
+// function Messages() {
+//   return (
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+//       <Text>Messages</Text>
+//       <LinkWrapper screen="Feed" action={StackActions.popTo("Feed")}>
+//         <Text>Go to Feed</Text>
+//       </LinkWrapper>
+//       <LinkWrapper screen="Home" action={StackActions.popTo("Home")}>
+//         <Text>Go Back</Text>
+//       </LinkWrapper>
+//     </View>
+//   );
+// }
+
+// const Tab = createNativeStackNavigator();
+// function MoreTabs() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Feed" component={Feed} />
+//       <Tab.Screen name="Messages" component={Messages} />
+//     </Tab.Navigator>
+//   );
+// }

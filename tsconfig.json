@@ -1,3 +1,9 @@
 {
-  "extends": "@react-native/typescript-config"
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "lib": ["esnext", "dom"], // newly es features + react native web
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
 }
