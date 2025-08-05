@@ -20,13 +20,14 @@ import NotFoundScreen from "./src/screens/not-found";
 import LoginScreen from "./src/screens/login";
 
 function HomeScreen() {
-  const { userLoggedIn, accessToken } = useAuth();
+  const { userLoggedIn } = useAuth();
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Welcome to Home Screen</Text>
       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
-        <Text>User Logged In: {String(userLoggedIn)}</Text>
-        <Text>AccessToken: {accessToken}</Text>
+        <Text style={{ textAlign: "center" }}>
+          User Logged In: {String(userLoggedIn)}
+        </Text>
       </View>
       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
         <LinkWrapper screen="Login">
@@ -56,7 +57,7 @@ function PlatformCheckScreen({ route }: { route: any }) {
       <Text>Your platform is: {PlatformAPI.getCurrentPlatform()}</Text>
       <Text>My param is: {myParam}</Text>
       <LinkWrapper screen="Home" action={StackActions.popTo("Home")}>
-        <Text style={{ color: "blue" }}>Go Back</Text>
+        <Text style={{ color: "blue" }}>Go Back to Home</Text>
       </LinkWrapper>
     </View>
   );
