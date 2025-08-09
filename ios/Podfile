@@ -17,6 +17,9 @@ end
 target 'Minsapoint' do
   config = use_native_modules!
 
+  # these 2 lines are for firebase
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
