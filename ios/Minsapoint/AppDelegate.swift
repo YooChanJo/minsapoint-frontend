@@ -36,12 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     return true
   }
-  // enable linking
-  override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+  // enable linking (removed override)
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
     return RCTLinkingManager.application(app, open: url, options: options)
   }
-  // universal links
-  override func application(
+  // universal links (removed override)
+  func application(
     _ application: UIApplication,
     continue userActivity: NSUserActivity,
     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         continue: userActivity,
         restorationHandler: restorationHandler
       )
-    }
+  }
 }
 
 class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
