@@ -7,10 +7,8 @@
   Advice: Consider making a color theme idea before configuring.
 */
 
-
 /* All ui-themes are specified here */
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
-
 
 /* Colors */
 const tintColorLight = "#000000";
@@ -75,7 +73,7 @@ export const Fonts = {
 };
 
 /* element styles */
-type StyleSet = {
+export type CommonStylesSetType = {
   container: ViewStyle;
   inputWrapper: ViewStyle;
   input: TextStyle;
@@ -134,7 +132,7 @@ type StyleSet = {
   pickerWrapper: ViewStyle;
 };
 
-function createCommonStyles(colors: typeof Colors.light): StyleSet {
+function createCommonStyles(colors: typeof Colors.light): CommonStylesSetType {
   return {
     /* Entire wrapper of screen */
     container: {

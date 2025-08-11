@@ -2,7 +2,7 @@
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Text, View } from "react-native";
+import { Text, useColorScheme, View } from "react-native";
 
 /* Configs */
 import { AppLinking } from "./src/config/deep-linking";
@@ -16,6 +16,7 @@ import LinkWrapper from "./src/components/link-wrapper";
 
 /* Screens */
 import { AuthProvider, useAuth } from "./src/components/auth-provider";
+import { UiStylesProvider } from "./src/components/ui-styles-provider";
 import NotFoundScreen from "./src/screens/not-found";
 import LoginScreen from "./src/screens/login";
 
@@ -83,6 +84,8 @@ function RootStack() {
 
 /* Manually toggling all of light mode, but would want to use both light & dark mode */
 function App() {
+  const colorScheme = useColorScheme();
+
   return (
     <SafeAreaProvider>
       <NavigationContainer
@@ -90,7 +93,9 @@ function App() {
         fallback={<Text>Loading...</Text>}
       >
         <AuthProvider>
-          <RootStack />
+          <UiStylesProvider colorScheme={colorScheme}>
+            <RootStack />
+          </UiStylesProvider>
         </AuthProvider>
       </NavigationContainer>
     </SafeAreaProvider>
