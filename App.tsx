@@ -28,6 +28,7 @@ import TeacherSettingsScreen from "./src/screens/teacher/settings";
 import TeacherHistoryScreen from "./src/screens/teacher/history";
 import TeacherPenaltyPointsScreen from "./src/screens/teacher/penalty-points";
 import TeacherRewardPointsScreen from "./src/screens/teacher/reward-points";
+import DeptOfJHomeScreen from "./src/screens/dept-of-j/home";
 
 function HomeScreen() {
   const { userLoggedIn } = useAuth();
@@ -46,9 +47,9 @@ function HomeScreen() {
         <LinkWrapper screen="TeacherHome">
           <Text style={{ color: "blue" }}>Go to Teacher Home</Text>
         </LinkWrapper>
-        {/* <LinkWrapper screen="StudentHistory">
+        <LinkWrapper screen="DeptOfJHome">
           <Text style={{ color: "blue" }}>Go to Dep of j Home</Text>
-        </LinkWrapper> */}
+        </LinkWrapper>
       </View>
       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
         <LinkWrapper screen="Login">
@@ -102,8 +103,16 @@ function RootStack() {
       <Stack.Screen name="TeacherHome" component={TeacherHomeScreen} />
       <Stack.Screen name="TeacherSettings" component={TeacherSettingsScreen} />
       <Stack.Screen name="TeacherHistory" component={TeacherHistoryScreen} />
-      <Stack.Screen name="TeacherPenaltyPoints" component={TeacherPenaltyPointsScreen} />
-      <Stack.Screen name="TeacherRewardPoints" component={TeacherRewardPointsScreen} />
+      <Stack.Screen
+        name="TeacherPenaltyPoints"
+        component={TeacherPenaltyPointsScreen}
+      />
+      <Stack.Screen
+        name="TeacherRewardPoints"
+        component={TeacherRewardPointsScreen}
+      />
+
+      <Stack.Screen name="DeptOfJHome" component={DeptOfJHomeScreen} />
 
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} />

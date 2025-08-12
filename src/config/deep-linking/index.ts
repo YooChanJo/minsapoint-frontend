@@ -15,6 +15,8 @@ export type RootStackParamList = {
   TeacherPenaltyPoints: undefined;
   TeacherRewardPoints: undefined;
 
+  DeptOfJHome: undefined;
+
   /* Debug screens */
   Home: undefined;
   PlatformCheck: { myParam: string };
@@ -46,6 +48,9 @@ export const AppLinking: LinkingOptions<RootStackParamList> = {
       TeacherHistory: "/teacher/history",
       TeacherPenaltyPoints: "teacher/penalty-points",
       TeacherRewardPoints: "teacher/reward-points",
+
+      /* DeptOfJ */
+      DeptOfJHome: "/dept-of-j",
 
       /* Debug screens */
       Home: "/",

@@ -1,8 +1,10 @@
+import { useUiStyles } from "@/src/components/ui-styles-provider";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Switch } from "react-native";
-import { commonStyles } from "../../constants/ThemeStyles";
 
-export default function Index() {
+export default function DeptOfJHomeScreen() {
+  const { commonStyles } = useUiStyles();
+
   const [isEnabled, setIsEnabled] = useState(false);
 
   const handlePress = (buttonName: string) => {
@@ -52,3 +54,11 @@ export default function Index() {
     </View>
   );
 }
+
+/* 
+  TouchableOpacities for routing can be replaced with this
+  <LinkWrapper screen="Screen to go" touchableOpacity={true} style={styles}>
+    <Text />
+    <Icon />
+  </LinkWrapper>
+*/
