@@ -9,12 +9,11 @@ const { presets } = require(`${appDirectory}/babel.config.js`);
 const compileNodeModules = [
   // Add every react-native package that needs compiling
   "@react-navigation",
+  "@react-native-vector-icons",
   "react-native",
   "react-native-web",
   "react-native-safe-area-context",
   "react-native-screens",
-  // "react-native-reanimated",
-  // "react-native-worklets",
   "react-native-svg",
 ].map(moduleName => path.resolve(appDirectory, `node_modules/${moduleName}`));
 
@@ -54,6 +53,16 @@ const imageLoaderConfiguration = {
       name: "[name].[ext]",
     },
   },
+};
+
+/* For loading react native vector icons */
+const vectorIconsLoaderConfiguration = {
+  test: /\.ttf$/,
+  loader: "url-loader", // or directly file-loader
+  include: path.resolve(
+    appDirectory,
+    "node_modules/@react-native-vector-icons"
+  ),
 };
 
 module.exports = {
@@ -113,6 +122,11 @@ module.exports = {
       ),
       /************************************************************/
       "@": path.resolve(appDirectory), // resolve alias during building
+      /* Shim for react native vector icons get image */
+      "@react-native-vector-icons/get-image": path.resolve(
+        appDirectory,
+        "shims/get-image.js"
+      ),
     },
     modules: [path.resolve(appDirectory, "node_modules"), "node_modules"],
   },
@@ -121,6 +135,7 @@ module.exports = {
       babelLoaderConfiguration,
       imageLoaderConfiguration,
       svgLoaderConfiguration,
+      vectorIconsLoaderConfiguration,
     ],
   },
   plugins: [

@@ -4,6 +4,8 @@ export type RootStackParamList = {
   Login: undefined;
   NotFound: undefined;
 
+  StudentHome: undefined;
+
   /* Debug screens */
   Home: undefined;
   PlatformCheck: { myParam: string };
@@ -22,6 +24,9 @@ export const AppLinking: LinkingOptions<RootStackParamList> = {
   config: {
     screens: {
       Login: "/login",
+
+      /* Student */
+      StudentHome: "/student",
 
       /* Debug screens */
       Home: "/",

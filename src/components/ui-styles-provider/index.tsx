@@ -59,13 +59,17 @@ interface UiProviderProps {
 }
 
 export function UiStylesProvider({ colorScheme, children }: UiProviderProps) {
-  const uiStylesValue: UiStylesContextType | undefined = (colorScheme === "light" || colorScheme === "dark") ? {
-    colors: Colors[colorScheme],
-    fonts: Fonts,
-    commonStyles: CommonStyles[colorScheme],
-  } : undefined;
+  const uiStylesValue: UiStylesContextType | undefined =
+    colorScheme === "light" || colorScheme === "dark"
+      ? {
+          colors: Colors[colorScheme],
+          fonts: Fonts,
+          commonStyles: CommonStyles[colorScheme],
+        }
+      : undefined;
 
-  if(!uiStylesValue) console.error("Ui Styles Provider error: invalid colorScheme");
+  if (!uiStylesValue)
+    console.error("Ui Styles Provider error: invalid colorScheme");
 
   return (
     <UiStylesContext.Provider value={uiStylesValue}>

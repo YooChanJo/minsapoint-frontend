@@ -19,6 +19,7 @@ import { AuthProvider, useAuth } from "./src/components/auth-provider";
 import { UiStylesProvider } from "./src/components/ui-styles-provider";
 import NotFoundScreen from "./src/screens/not-found";
 import LoginScreen from "./src/screens/login";
+import StudentHomeScreen from "./src/screens/student/home";
 
 function HomeScreen() {
   const { userLoggedIn } = useAuth();
@@ -31,11 +32,20 @@ function HomeScreen() {
         </Text>
       </View>
       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
+        <LinkWrapper screen="StudentHome">
+          <Text style={{ color: "blue" }}>Go to Student Home</Text>
+        </LinkWrapper>
+        {/* <LinkWrapper screen="Login">
+          <Text style={{ color: "blue" }}>Go to Teacher Home</Text>
+        </LinkWrapper>
+        <LinkWrapper screen="Login">
+          <Text style={{ color: "blue" }}>Go to Dep of j Home</Text>
+        </LinkWrapper> */}
+      </View>
+      <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
         <LinkWrapper screen="Login">
           <Text style={{ color: "blue" }}>Go to Login screen</Text>
         </LinkWrapper>
-      </View>
-      <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
         <LinkWrapper screen="PlatformCheck" params={{ myParam: "Hello World" }}>
           <Text style={{ color: "blue" }}>Go to PlatformCheck</Text>
         </LinkWrapper>
@@ -76,6 +86,7 @@ function RootStack() {
         initialParams={{ myParam: "My Param" }}
       />
 
+      <Stack.Screen name="StudentHome" component={StudentHomeScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} />
     </Stack.Navigator>
