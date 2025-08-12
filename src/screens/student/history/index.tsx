@@ -46,12 +46,13 @@ export default function StudentHistoryScreen() {
 
   return (
     <View style={commonStyles.container}>
-      <LinkWrapper screen="StudentHome" action={StackActions.popTo("StudentHome")}>
-        <TouchableOpacity
-          style={commonStyles.topBar}
-        >
-          <Text style={commonStyles.appTitle}>MinsaPoint</Text>
-        </TouchableOpacity>
+      <LinkWrapper
+        screen="StudentHome"
+        action={StackActions.popTo("StudentHome")}
+        style={commonStyles.topBar}
+        touchableOpacity={true}
+      >
+        <Text style={commonStyles.appTitle}>MinsaPoint</Text>
       </LinkWrapper>
       <FlatList
         style={{ marginTop: 20 }}

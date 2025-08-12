@@ -12,7 +12,6 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="http" android:host="10.0.2.2" android:port="8081"/>
         <data android:scheme="http" android:host="192.168.0.42" android:port="8081"/>
-        <data android:scheme="example"/>
       </intent-filter>
     </activity>
   </application>

@@ -1,6 +1,6 @@
 import React from "react";
 import Ionicons from "@react-native-vector-icons/ionicons";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, View } from "react-native";
 
 import { useUiStyles } from "@/src/components/ui-styles-provider";
 import LinkWrapper from "@/src/components/link-wrapper";
@@ -14,22 +14,26 @@ export default function StudentHomeScreen() {
       <View style={commonStyles.topBar}>
         <Text style={commonStyles.appTitle}>MinsaPoint</Text>
         <View style={commonStyles.rightProfileSection}>
-          <LinkWrapper screen="StudentSettings">
-            <TouchableOpacity style={commonStyles.settingsIcon}>
-              <Ionicons name="settings-outline" size={30} color="#333" />
-            </TouchableOpacity>
+          <LinkWrapper
+            screen="StudentSettings"
+            style={commonStyles.settingsIcon}
+            touchableOpacity={true}
+          >
+            <Ionicons name="settings-outline" size={30} color="#333" />
           </LinkWrapper>
         </View>
       </View>
 
       {/* 알림 아이콘 */}
-      <LinkWrapper screen="StudentAlerts">
-        <TouchableOpacity style={commonStyles.notification}>
-          <Ionicons name="notifications-outline" size={28} color="black" />
-          <View style={commonStyles.notificationBadge}>
-            <Text style={commonStyles.notificationText}>3</Text>
-          </View>
-        </TouchableOpacity>
+      <LinkWrapper
+        screen="StudentAlerts"
+        style={commonStyles.notification}
+        touchableOpacity={true}
+      >
+        <Ionicons name="notifications-outline" size={28} color="black" />
+        <View style={commonStyles.notificationBadge}>
+          <Text style={commonStyles.notificationText}>3</Text>
+        </View>
       </LinkWrapper>
       {/* 중앙 점수 정보 */}
       <View style={commonStyles.scoreSection}>
@@ -46,10 +50,12 @@ export default function StudentHomeScreen() {
             <Text style={commonStyles.value}>12</Text>
           </View>
         </View>
-        <LinkWrapper screen="StudentHistory">
-          <TouchableOpacity style={commonStyles.homeButton}>
-            <Text style={commonStyles.buttonText}>History</Text>
-          </TouchableOpacity>
+        <LinkWrapper
+          screen="StudentHistory"
+          style={commonStyles.homeButton}
+          touchableOpacity={true}
+        >
+          <Text style={commonStyles.buttonText}>History</Text>
         </LinkWrapper>
       </View>
       <View style={commonStyles.button}>

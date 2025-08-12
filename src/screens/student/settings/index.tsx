@@ -33,12 +33,13 @@ export default function StudentSettingsScreen() {
       >
         <Text style={commonStyles.logoutButtonText}>로그아웃</Text>
       </TouchableOpacity>
-      <LinkWrapper screen="StudentHome" action={StackActions.popTo("StudentHome")}>
-        <TouchableOpacity
-          style={commonStyles.homeButton}
-        >
-          <Text style={commonStyles.logoutButtonText}>홈화면 돌아가기</Text>
-        </TouchableOpacity>
+      <LinkWrapper
+        screen="StudentHome"
+        action={StackActions.popTo("StudentHome")}
+        style={commonStyles.homeButton}
+        touchableOpacity={true}
+      >
+        <Text style={commonStyles.logoutButtonText}>홈화면 돌아가기</Text>
       </LinkWrapper>
     </View>
   );

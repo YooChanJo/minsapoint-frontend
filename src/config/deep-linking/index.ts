@@ -20,7 +20,7 @@ export const AppLinking: LinkingOptions<RootStackParamList> = {
     /* your linking prefixes */
     "http://10.0.2.2:8081", // When using android emulator
     "http://192.168.0.42:8081", // When remote connecting --> Needs constant fixing
-    "example://", // only for debug must remove
+    "example://", // only for debug must remove (ios)
     // 'https://xyz.ngrok.io', // deploy
   ],
   // filter: (url) => !url.includes('+expo-auth-session'), // for filtering out unwanted paths

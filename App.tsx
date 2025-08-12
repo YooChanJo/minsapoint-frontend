@@ -82,20 +82,20 @@ function RootStack() {
   return (
     /* Debug screens */
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen}/>
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
         name="PlatformCheck"
         component={PlatformCheckScreen}
         initialParams={{ myParam: "My Param" }}
       />
 
-      <Stack.Screen name="StudentHome" component={StudentHomeScreen}/>
-      <Stack.Screen name="StudentSettings" component={StudentSettingsScreen}/>
-      <Stack.Screen name="StudentHistory" component={StudentHistoryScreen}/>
-      <Stack.Screen name="StudentAlerts" component={StudentAlertsScreen}/>
-      
-      <Stack.Screen name="Login" component={LoginScreen}/>
-      <Stack.Screen name="NotFound" component={NotFoundScreen}/>
+      <Stack.Screen name="StudentHome" component={StudentHomeScreen} />
+      <Stack.Screen name="StudentSettings" component={StudentSettingsScreen} />
+      <Stack.Screen name="StudentHistory" component={StudentHistoryScreen} />
+      <Stack.Screen name="StudentAlerts" component={StudentAlertsScreen} />
+
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="NotFound" component={NotFoundScreen} />
     </Stack.Navigator>
   );
 }
