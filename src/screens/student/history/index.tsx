@@ -1,5 +1,3 @@
-import { commonStyles } from "@/constants/ThemeStyles";
-import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -9,6 +7,10 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import { StackActions } from "@react-navigation/native";
+
+import { useUiStyles } from "@/src/components/ui-styles-provider";
+import LinkWrapper from "@/src/components/link-wrapper";
 
 const sampleData = [
   {
@@ -27,8 +29,8 @@ const sampleData = [
   },
 ];
 
-export default function CounterScreen() {
-  const router = useRouter();
+export default function StudentHistoryScreen() {
+  const { commonStyles } = useUiStyles();
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -44,12 +46,13 @@ export default function CounterScreen() {
 
   return (
     <View style={commonStyles.container}>
-      <TouchableOpacity
-        style={commonStyles.topBar}
-        onPress={() => router.push("../student")}
-      >
-        <Text style={commonStyles.appTitle}>MinsaPoint</Text>
-      </TouchableOpacity>
+      <LinkWrapper screen="StudentHome" action={StackActions.popTo("StudentHome")}>
+        <TouchableOpacity
+          style={commonStyles.topBar}
+        >
+          <Text style={commonStyles.appTitle}>MinsaPoint</Text>
+        </TouchableOpacity>
+      </LinkWrapper>
       <FlatList
         style={{ marginTop: 20 }}
         data={sampleData}

@@ -1,8 +1,9 @@
-import LinkWrapper from "@/src/components/link-wrapper";
-import { useUiStyles } from "@/src/components/ui-styles-provider";
-import Ionicons from "@react-native-vector-icons/ionicons";
 import React from "react";
+import Ionicons from "@react-native-vector-icons/ionicons";
 import { Text, TouchableOpacity, View } from "react-native";
+
+import { useUiStyles } from "@/src/components/ui-styles-provider";
+import LinkWrapper from "@/src/components/link-wrapper";
 
 export default function StudentHomeScreen() {
   const { commonStyles } = useUiStyles();
@@ -13,7 +14,7 @@ export default function StudentHomeScreen() {
       <View style={commonStyles.topBar}>
         <Text style={commonStyles.appTitle}>MinsaPoint</Text>
         <View style={commonStyles.rightProfileSection}>
-          <LinkWrapper screen="StudentSettingsScreen">
+          <LinkWrapper screen="StudentSettings">
             <TouchableOpacity style={commonStyles.settingsIcon}>
               <Ionicons name="settings-outline" size={30} color="#333" />
             </TouchableOpacity>
@@ -22,7 +23,7 @@ export default function StudentHomeScreen() {
       </View>
 
       {/* 알림 아이콘 */}
-      <LinkWrapper screen="StudentAlertsScreen">
+      <LinkWrapper screen="StudentAlerts">
         <TouchableOpacity style={commonStyles.notification}>
           <Ionicons name="notifications-outline" size={28} color="black" />
           <View style={commonStyles.notificationBadge}>
@@ -45,7 +46,7 @@ export default function StudentHomeScreen() {
             <Text style={commonStyles.value}>12</Text>
           </View>
         </View>
-        <LinkWrapper screen="StudentHistoryScreen">
+        <LinkWrapper screen="StudentHistory">
           <TouchableOpacity style={commonStyles.homeButton}>
             <Text style={commonStyles.buttonText}>History</Text>
           </TouchableOpacity>

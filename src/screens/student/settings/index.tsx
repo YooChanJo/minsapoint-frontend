@@ -1,12 +1,15 @@
-import { useRouter } from "expo-router";
 import React from "react";
+import LinkWrapper from "@/src/components/link-wrapper";
 import { Text, TouchableOpacity, View } from "react-native";
-import { commonStyles } from "../../constants/ThemeStyles";
+import { StackActions } from "@react-navigation/native";
 
-export default function SettingsScreen() {
-  const router = useRouter();
+import { useUiStyles } from "@/src/components/ui-styles-provider";
+
+export default function StudentSettingsScreen() {
+  const { commonStyles } = useUiStyles();
+
   const handleLogout = () => {
-    console.log("로그아웃 버튼이 눌렸습니다.");
+    alert("로그아웃 버튼이 눌렸습니다.");
     // 여기서 실제 로그아웃 처리(ex: 토큰 삭제, 로그인 화면으로 이동 등)를 하면 돼
   };
 
@@ -30,12 +33,13 @@ export default function SettingsScreen() {
       >
         <Text style={commonStyles.logoutButtonText}>로그아웃</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={commonStyles.homeButton}
-        onPress={() => router.push("../student")}
-      >
-        <Text style={commonStyles.logoutButtonText}>홈화면 돌아가기</Text>
-      </TouchableOpacity>
+      <LinkWrapper screen="StudentHome" action={StackActions.popTo("StudentHome")}>
+        <TouchableOpacity
+          style={commonStyles.homeButton}
+        >
+          <Text style={commonStyles.logoutButtonText}>홈화면 돌아가기</Text>
+        </TouchableOpacity>
+      </LinkWrapper>
     </View>
   );
 }

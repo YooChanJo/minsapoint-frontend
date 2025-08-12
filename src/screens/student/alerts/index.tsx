@@ -1,8 +1,11 @@
-import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { commonStyles } from "../../constants/ThemeStyles";
+import { StackActions } from "@react-navigation/native";
+import Ionicons from "@react-native-vector-icons/ionicons";
+
+import { useUiStyles } from "@/src/components/ui-styles-provider";
+import LinkWrapper from "@/src/components/link-wrapper";
+
 const warnings = [
   {
     id: 1,
@@ -24,16 +27,18 @@ const warnings = [
   },
 ];
 
-export default function CounterScreen() {
-  const router = useRouter();
+export default function StudentAlertsScreen() {
+  const { commonStyles } = useUiStyles();
+
   return (
     <View style={commonStyles.container}>
-      <TouchableOpacity
-        style={commonStyles.topBar}
-        onPress={() => router.push("../student")}
-      >
-        <Text style={commonStyles.appTitle}>MinsaPoint</Text>
-      </TouchableOpacity>
+      <LinkWrapper screen="StudentHome" action={StackActions.popTo("StudentHome")}>
+        <TouchableOpacity
+          style={commonStyles.topBar}
+        >
+          <Text style={commonStyles.appTitle}>MinsaPoint</Text>
+        </TouchableOpacity>
+      </LinkWrapper>
       <View>
         <View
           style={{

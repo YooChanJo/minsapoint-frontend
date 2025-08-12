@@ -5,6 +5,9 @@ export type RootStackParamList = {
   NotFound: undefined;
 
   StudentHome: undefined;
+  StudentSettings: undefined;
+  StudentHistory: undefined;
+  StudentAlerts: undefined;
 
   /* Debug screens */
   Home: undefined;
@@ -27,6 +30,9 @@ export const AppLinking: LinkingOptions<RootStackParamList> = {
 
       /* Student */
       StudentHome: "/student",
+      StudentSettings: "/student/settings",
+      StudentHistory: "/student/history",
+      StudentAlerts: "/student/alerts",
 
       /* Debug screens */
       Home: "/",

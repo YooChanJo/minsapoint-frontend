@@ -20,6 +20,9 @@ import { UiStylesProvider } from "./src/components/ui-styles-provider";
 import NotFoundScreen from "./src/screens/not-found";
 import LoginScreen from "./src/screens/login";
 import StudentHomeScreen from "./src/screens/student/home";
+import StudentSettingsScreen from "./src/screens/student/settings";
+import StudentHistoryScreen from "./src/screens/student/history";
+import StudentAlertsScreen from "./src/screens/student/alerts";
 
 function HomeScreen() {
   const { userLoggedIn } = useAuth();
@@ -35,10 +38,10 @@ function HomeScreen() {
         <LinkWrapper screen="StudentHome">
           <Text style={{ color: "blue" }}>Go to Student Home</Text>
         </LinkWrapper>
-        {/* <LinkWrapper screen="Login">
-          <Text style={{ color: "blue" }}>Go to Teacher Home</Text>
+        {/* <LinkWrapper screen="StudentSettings">
+          <Text style={{ color: "blue" }}>Go to Student Settings</Text>
         </LinkWrapper>
-        <LinkWrapper screen="Login">
+        <LinkWrapper screen="StudentHistory">
           <Text style={{ color: "blue" }}>Go to Dep of j Home</Text>
         </LinkWrapper> */}
       </View>
@@ -79,16 +82,20 @@ function RootStack() {
   return (
     /* Debug screens */
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen}/>
       <Stack.Screen
         name="PlatformCheck"
         component={PlatformCheckScreen}
         initialParams={{ myParam: "My Param" }}
       />
 
-      <Stack.Screen name="StudentHome" component={StudentHomeScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} />
+      <Stack.Screen name="StudentHome" component={StudentHomeScreen}/>
+      <Stack.Screen name="StudentSettings" component={StudentSettingsScreen}/>
+      <Stack.Screen name="StudentHistory" component={StudentHistoryScreen}/>
+      <Stack.Screen name="StudentAlerts" component={StudentAlertsScreen}/>
+      
+      <Stack.Screen name="Login" component={LoginScreen}/>
+      <Stack.Screen name="NotFound" component={NotFoundScreen}/>
     </Stack.Navigator>
   );
 }
