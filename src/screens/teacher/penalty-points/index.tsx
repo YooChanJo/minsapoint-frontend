@@ -1,13 +1,16 @@
-import { Ionicons } from "@expo/vector-icons";
+import { useUiStyles } from "@/src/components/ui-styles-provider";
 import { Picker } from "@react-native-picker/picker";
-import React from "react";
+import Ionicons from "@react-native-vector-icons/ionicons";
+import React, { useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { commonStyles } from "../../constants/ThemeStyles";
 
-export default function PenaltyScreen() {
-  const [selectedCategory, setSelectedCategory] = React.useState("");
-  const [selectedPenalty, setSelectedPenalty] = React.useState("");
-  const [selectedStudent, setSelectedStudent] = React.useState("");
+/* No way to renavigate back to home */
+export default function TeacherPenaltyPointsScreen() {
+  const { commonStyles } = useUiStyles();
+
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedPenalty, setSelectedPenalty] = useState("");
+  const [selectedStudent, setSelectedStudent] = useState("");
 
   return (
     <ScrollView style={{ flex: 1 }}>

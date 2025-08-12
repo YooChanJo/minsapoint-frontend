@@ -5,24 +5,30 @@ import App from "./App";
 /* React native vector icons styles inject handling --> Need this for ttf loading */
 // Generate the required CSS
 import IonIconsFont from "@react-native-vector-icons/ionicons/fonts/Ionicons.ttf";
-const ionIconsFontStyles = `@font-face {
-  src: url(${IonIconsFont});
-  font-family: Ionicons;
-}`;
+import MaterialIconsFont from "@react-native-vector-icons/material-icons/fonts/MaterialIcons.ttf";
+const fontStyles = `
+  @font-face {
+    src: url(${IonIconsFont});
+    font-family: Ionicons;
+  }
+  @font-face {
+    src: url(${MaterialIconsFont});
+    font-family: MaterialIcons-Regular;
+  }`;
 
 // Create a stylesheet
-const style = document.createElement("style");
-style.type = "text/css";
+const iconsStyle = document.createElement("style");
+iconsStyle.type = "text/css";
 
 // Append the iconFontStyles to the stylesheet
-if (style.styleSheet) {
-  style.styleSheet.cssText = ionIconsFontStyles;
+if (iconsStyle.styleSheet) {
+  iconsStyle.styleSheet.cssText = fontStyles;
 } else {
-  style.appendChild(document.createTextNode(ionIconsFontStyles));
+  iconsStyle.appendChild(document.createTextNode(fontStyles));
 }
 
 // Inject the stylesheet into the document head
-document.head.appendChild(style);
+document.head.appendChild(iconsStyle);
 /* ************************************************ */
 
 if (module.hot) {

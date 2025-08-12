@@ -1,8 +1,10 @@
+import { useUiStyles } from "@/src/components/ui-styles-provider";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { commonStyles } from "../../constants/ThemeStyles";
 
-export default function SettingsScreen() {
+export default function TeacherSettingsScreen() {
+  const { commonStyles } = useUiStyles();
+
   const handleLogout = () => {
     console.log("로그아웃 버튼이 눌렸습니다.");
     // 여기서 실제 로그아웃 처리(ex: 토큰 삭제, 로그인 화면으로 이동 등)를 하면 돼

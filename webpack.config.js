@@ -10,6 +10,7 @@ const compileNodeModules = [
   // Add every react-native package that needs compiling
   "@react-navigation",
   "@react-native-vector-icons",
+  "@react-native-picker",
   "react-native",
   "react-native-web",
   "react-native-safe-area-context",

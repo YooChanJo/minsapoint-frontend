@@ -23,6 +23,11 @@ import StudentHomeScreen from "./src/screens/student/home";
 import StudentSettingsScreen from "./src/screens/student/settings";
 import StudentHistoryScreen from "./src/screens/student/history";
 import StudentAlertsScreen from "./src/screens/student/alerts";
+import TeacherHomeScreen from "./src/screens/teacher/home";
+import TeacherSettingsScreen from "./src/screens/teacher/settings";
+import TeacherHistoryScreen from "./src/screens/teacher/history";
+import TeacherPenaltyPointsScreen from "./src/screens/teacher/penalty-points";
+import TeacherRewardPointsScreen from "./src/screens/teacher/reward-points";
 
 function HomeScreen() {
   const { userLoggedIn } = useAuth();
@@ -38,10 +43,10 @@ function HomeScreen() {
         <LinkWrapper screen="StudentHome">
           <Text style={{ color: "blue" }}>Go to Student Home</Text>
         </LinkWrapper>
-        {/* <LinkWrapper screen="StudentSettings">
-          <Text style={{ color: "blue" }}>Go to Student Settings</Text>
+        <LinkWrapper screen="TeacherHome">
+          <Text style={{ color: "blue" }}>Go to Teacher Home</Text>
         </LinkWrapper>
-        <LinkWrapper screen="StudentHistory">
+        {/* <LinkWrapper screen="StudentHistory">
           <Text style={{ color: "blue" }}>Go to Dep of j Home</Text>
         </LinkWrapper> */}
       </View>
@@ -93,6 +98,12 @@ function RootStack() {
       <Stack.Screen name="StudentSettings" component={StudentSettingsScreen} />
       <Stack.Screen name="StudentHistory" component={StudentHistoryScreen} />
       <Stack.Screen name="StudentAlerts" component={StudentAlertsScreen} />
+
+      <Stack.Screen name="TeacherHome" component={TeacherHomeScreen} />
+      <Stack.Screen name="TeacherSettings" component={TeacherSettingsScreen} />
+      <Stack.Screen name="TeacherHistory" component={TeacherHistoryScreen} />
+      <Stack.Screen name="TeacherPenaltyPoints" component={TeacherPenaltyPointsScreen} />
+      <Stack.Screen name="TeacherRewardPoints" component={TeacherRewardPointsScreen} />
 
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} />

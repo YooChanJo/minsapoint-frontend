@@ -1,4 +1,4 @@
-import { commonStyles } from "@/constants/ThemeStyles";
+import { useUiStyles } from "@/src/components/ui-styles-provider";
 import React, { useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, Modal } from "react-native";
 
@@ -26,7 +26,10 @@ const sampleData = [
   },
 ];
 
-export default function CounterScreen() {
+/* There is not way to renavigate back to home implementation needed */
+/* Some commonStyles simply do not exist --> need implementation */
+export default function TeacherHistoryScreen() {
+  const { commonStyles } = useUiStyles();
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -66,7 +69,7 @@ export default function CounterScreen() {
       >
         <View style={commonStyles.modalBackdrop}>
           <View style={commonStyles.modalBox}>
-            <View style={commonStyles.modalHeader}>
+            <View /* style={commonStyles.modalHeader} */>
               <Text style={commonStyles.modalTitle}>
                 {selectedItem?.title || "상세정보"}
               </Text>
@@ -77,7 +80,7 @@ export default function CounterScreen() {
             <Text style={commonStyles.modalContent}>
               {selectedItem?.content || ""}
             </Text>
-            <View style={commonStyles.modalButtons}>
+            <View /* style={commonStyles.modalButtons} */>
               <TouchableOpacity style={commonStyles.cancelButton}>
                 <Text style={{ color: "#fff" }}>기소 취하</Text>
               </TouchableOpacity>
