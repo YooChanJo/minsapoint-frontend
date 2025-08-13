@@ -11,9 +11,35 @@
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 /* Colors */
+export interface ColorStyleType {
+  text: string;
+  background: string;
+  tint: string;
+  icon: string;
+  tabIconDefault: string;
+  tabIconSelected: string;
+  border: string;
+  card: string;
+  button: string;
+  buttonText: string;
+  success: string;
+  error: string;
+  notificationBadge: string;
+  notificationText: string;
+  menuItemBottomColor: string;
+  warning: string;
+  inputBackground: string;
+  inputText: string;
+}
+
+export interface ColorStyleSetType {
+  light: ColorStyleType;
+  dark: ColorStyleType;
+}
+
 const tintColorLight = "#000000";
 const tintColorDark = "#FFFFFF";
-export const Colors = {
+export const Colors: ColorStyleSetType = {
   light: {
     text: "#11181C",
     background: "#FFFFFF",
@@ -57,7 +83,18 @@ export const Colors = {
 };
 
 /* Fonts */
-export const Fonts = {
+export interface FontStyleType {
+  fontFamily: string;
+  fontSize: number;
+}
+
+export interface FontStyleSetType {
+  regular: FontStyleType;
+  bold: FontStyleType;
+  heading: FontStyleType;
+}
+
+export const Fonts: FontStyleSetType = {
   regular: {
     fontFamily: "Poppins-Regular",
     fontSize: 16,
@@ -73,7 +110,7 @@ export const Fonts = {
 };
 
 /* element styles */
-export type CommonStylesSetType = {
+export interface CommonStylesType {
   container: ViewStyle;
   inputWrapper: ViewStyle;
   input: TextStyle;
@@ -130,9 +167,9 @@ export type CommonStylesSetType = {
   headerRight: ViewStyle;
   formBox: ViewStyle;
   pickerWrapper: ViewStyle;
-};
+}
 
-function createCommonStyles(colors: typeof Colors.light): CommonStylesSetType {
+function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
   return {
     /* Entire wrapper of screen */
     container: {
@@ -460,6 +497,11 @@ function createCommonStyles(colors: typeof Colors.light): CommonStylesSetType {
       marginBottom: 12,
     },
   };
+}
+
+export interface CommonStylesSetType {
+  light: CommonStylesType;
+  dark: CommonStylesType;
 }
 
 export const CommonStyles = {

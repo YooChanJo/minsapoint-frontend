@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { useLinkProps } from "@react-navigation/native";
 
-type LinkButtonProps = {
+interface LinkWrapperProps extends PressableProps {
   screen?: string;
   params?: object;
   action?: any;
@@ -16,7 +16,7 @@ type LinkButtonProps = {
   touchableOpacity?: boolean;
   // onPress?: (e?: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => void;
   children?: ReactNode;
-} & PressableProps;
+}
 
 /* Actions would be normally ignored or malfunctioned with web use */
 export default function LinkWrapper({
@@ -30,7 +30,7 @@ export default function LinkWrapper({
   // onPress,
   children,
   ...rest
-}: LinkButtonProps) {
+}: LinkWrapperProps) {
   const props = useLinkProps({ screen, params, action, href });
   // /* MergedOnPress would overwrite onPress of props */
   // const MergedOnPress = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent) => {

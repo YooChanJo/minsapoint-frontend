@@ -1,44 +1,18 @@
 import {
   Colors,
+  ColorStyleType,
   CommonStyles,
-  CommonStylesSetType,
+  CommonStylesType,
   Fonts,
+  FontStyleSetType,
 } from "@/src/constants/ui-styles";
 import { createContext, ReactNode, useContext } from "react";
 import { ColorSchemeName } from "react-native";
 
-interface FontStyleType {
-  fontFamily: string;
-  fontSize: number;
-}
-
-interface UiStylesContextType {
-  colors: {
-    text: string;
-    background: string;
-    tint: string;
-    icon: string;
-    tabIconDefault: string;
-    tabIconSelected: string;
-    border: string;
-    card: string;
-    button: string;
-    buttonText: string;
-    success: string;
-    error: string;
-    notificationBadge: string;
-    notificationText: string;
-    menuItemBottomColor: string;
-    warning: string;
-    inputBackground: string;
-    inputText: string;
-  };
-  fonts: {
-    regular: FontStyleType;
-    bold: FontStyleType;
-    heading: FontStyleType;
-  };
-  commonStyles: CommonStylesSetType;
+export interface UiStylesContextType {
+  colors: ColorStyleType;
+  fonts: FontStyleSetType;
+  commonStyles: CommonStylesType;
 }
 
 const UiStylesContext = createContext<UiStylesContextType | undefined>(
@@ -53,12 +27,15 @@ export function useUiStyles() {
   return context;
 }
 
-interface UiProviderProps {
+interface UiStylesProviderProps {
   colorScheme: ColorSchemeName;
   children: ReactNode;
 }
 
-export function UiStylesProvider({ colorScheme, children }: UiProviderProps) {
+export function UiStylesProvider({
+  colorScheme,
+  children,
+}: UiStylesProviderProps) {
   const uiStylesValue: UiStylesContextType | undefined =
     colorScheme === "light" || colorScheme === "dark"
       ? {

@@ -5,6 +5,19 @@ import {
   updatePassword,
 } from "@react-native-firebase/auth";
 
+export interface BackendUser {
+  _id: string; // id offered by firestore
+  firebase_uid: string; // id offered by firebase authentication
+  role: "STUDENT" | "ACCUSER" | "DEPT_OF_JUSTICE" | "ADMIN";
+  name: string;
+  studentNumber?: number;
+  schoolPoints?: number;
+  dormPoints?: number;
+  rewardPoints?: number;
+  totalPoints?: number;
+  hasCourt?: boolean;
+}
+
 const UserAPI: {
   signUserIn: Function;
   signUserOut: Function;

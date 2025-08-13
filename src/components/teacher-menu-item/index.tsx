@@ -1,11 +1,13 @@
 import { ReactNode } from "react";
-import { useUiStyles } from "../ui-styles-provider";
-import LinkWrapper from "../link-wrapper";
 import { Text, View } from "react-native";
 import Ionicons from "@react-native-vector-icons/ionicons";
 
+import LinkWrapper from "../link-wrapper";
+import { useUiStyles } from "../ui-styles-provider";
+
+/* This is an item for disiplaying menu options in teacher home */
 interface TeacherMenuItemProps {
-  icon: ReactNode; // to fix to a more specific one
+  icon: ReactNode; // Suggestion: Change this to a more concrete type
   title: string;
   subtitle: string;
   screen: string; // the screen this leads too
