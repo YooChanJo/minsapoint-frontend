@@ -5,6 +5,21 @@ import {
   updatePassword,
 } from "firebase/auth";
 
+export type BackendUserRole = "STUDENT" | "ACCUSER" | "DEPT_OF_JUSTICE" | "ADMIN";
+
+export interface BackendUser {
+  _id: string; // id offered by firestore
+  firebase_uid: string; // id offered by firebase authentication
+  role: BackendUserRole;
+  name: string;
+  studentNumber?: number;
+  schoolPoints?: number;
+  dormPoints?: number;
+  rewardPoints?: number;
+  totalPoints?: number;
+  hasCourt?: boolean;
+}
+
 const UserAPI: {
   signUserIn: Function;
   signUserOut: Function;

@@ -5,10 +5,12 @@ import {
   updatePassword,
 } from "@react-native-firebase/auth";
 
+export type BackendUserRole = "STUDENT" | "ACCUSER" | "DEPT_OF_JUSTICE" | "ADMIN";
+
 export interface BackendUser {
   _id: string; // id offered by firestore
   firebase_uid: string; // id offered by firebase authentication
-  role: "STUDENT" | "ACCUSER" | "DEPT_OF_JUSTICE" | "ADMIN";
+  role: BackendUserRole;
   name: string;
   studentNumber?: number;
   schoolPoints?: number;

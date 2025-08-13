@@ -2,20 +2,16 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { User, onAuthStateChanged } from "firebase/auth";
 
-/* Configs */
-import { firebaseAuth } from "@/src/config/firebase";
-
-/* APIs */
 import NavigationAPI from "@/src/api/navigation";
+import { firebaseAuth } from "@/src/config/firebase";
+import { BackendUserRole } from "@/src/api/user";
 
-/* Todo change this */
-type UserType = "Unauthorized" | "Admin" | "User" | string;
 
-interface AuthContextType {
+export interface AuthContextType {
   currentUser: User | null;
   userLoggedIn: boolean;
   accessToken: string;
-  userType: UserType;
+  userType: BackendUserRole | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -36,7 +32,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
   const [accessToken, setAccessToken] = useState<string>("");
-  const [userType, setUserType] = useState<UserType>("Unauthorized");
+  const [userType, setUserType] = useState<BackendUserRole | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   async function initializeUser(user: User | null) {
@@ -49,6 +45,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setAccessToken("");
       setCurrentUser(null);
       setUserLoggedIn(false);
+      setUserType(null);
     }
 
     // Optional: Fetch user type from backend
@@ -57,6 +54,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     //   setUserType(userInfo.userType);
     // } catch (err) {
     //   console.error("AuthProvider error: ", err);
+    //   setUserType(null);
     // }
 
     setLoading(false);
