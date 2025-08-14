@@ -7,13 +7,11 @@ import {
 
 import NavigationAPI from "@/src/api/navigation";
 import { firebaseAuth } from "@/src/config/firebase";
-import { BackendUserRole } from "@/src/api/user";
 
 export interface AuthContextType {
   currentUser: FirebaseAuthTypes.User | null;
   userLoggedIn: boolean;
   accessToken: string;
-  userType: BackendUserRole | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -36,7 +34,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   );
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
   const [accessToken, setAccessToken] = useState<string>("");
-  const [userType, setUserType] = useState<BackendUserRole | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   async function initializeUser(user: FirebaseAuthTypes.User | null) {
@@ -49,18 +46,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setAccessToken("");
       setCurrentUser(null);
       setUserLoggedIn(false);
-      setUserType(null);
     }
-
-    // Optional: Fetch user type from backend
-    // try {
-    //   const userInfo = await userService.getUserInfo(token);
-    //   setUserType(userInfo.userType);
-    // } catch (err) {
-    //   console.error("AuthProvider error: ", err);
-    //   setUserType(null);
-    // }
-
     setLoading(false);
   }
 
@@ -73,7 +59,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     currentUser,
     userLoggedIn,
     accessToken,
-    userType,
   };
 
   return (
