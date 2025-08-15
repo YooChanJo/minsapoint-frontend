@@ -33,10 +33,7 @@ export default function TeacherHomeScreen() {
       <View style={commonStyles.summaryBox}>
         <Text style={commonStyles.smallGrayText}>피기소자수: 20명</Text>
         <Text style={commonStyles.boldBlackText}>
-          최다 기소항목:{" "}
-          <Text style={{ fontWeight: "normal" }}>
-            Absent from Morning Exercise
-          </Text>
+          최다 기소항목: <Text style={{ fontWeight: "normal" }}>Absent from Morning Exercise</Text>
         </Text>
       </View>
 

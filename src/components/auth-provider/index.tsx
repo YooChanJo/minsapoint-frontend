@@ -1,9 +1,6 @@
 /* Vendors */
 import { createContext, useContext, useState, ReactNode } from "react";
-import {
-  FirebaseAuthTypes,
-  onAuthStateChanged,
-} from "@react-native-firebase/auth";
+import { FirebaseAuthTypes, onAuthStateChanged } from "@react-native-firebase/auth";
 
 import NavigationAPI from "@/src/api/navigation";
 import { firebaseAuth } from "@/src/config/firebase";
@@ -29,9 +26,7 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [currentUser, setCurrentUser] = useState<FirebaseAuthTypes.User | null>(
-    null
-  );
+  const [currentUser, setCurrentUser] = useState<FirebaseAuthTypes.User | null>(null);
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
   const [accessToken, setAccessToken] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
@@ -61,9 +56,5 @@ export function AuthProvider({ children }: AuthProviderProps) {
     accessToken,
   };
 
-  return (
-    <AuthContext.Provider value={authValue}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={authValue}>{!loading && children}</AuthContext.Provider>;
 }

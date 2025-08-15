@@ -50,10 +50,7 @@ export default function TeacherHistoryScreen() {
         data={sampleData}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            style={commonStyles.itemCard}
-            onPress={() => handleItemPress(item)}
-          >
+          <TouchableOpacity style={commonStyles.itemCard} onPress={() => handleItemPress(item)}>
             <Text style={commonStyles.itemTitle}>{item.title}</Text>
             <Text style={commonStyles.itemSub}>{item.content}</Text>
           </TouchableOpacity>
@@ -61,33 +58,21 @@ export default function TeacherHistoryScreen() {
       />
 
       {/* Modal */}
-      <Modal
-        visible={modalVisible}
-        transparent
-        animationType="fade"
-        onRequestClose={closeModal}
-      >
+      <Modal visible={modalVisible} transparent animationType="fade" onRequestClose={closeModal}>
         <View style={commonStyles.modalBackdrop}>
           <View style={commonStyles.modalBox}>
             <View /* style={commonStyles.modalHeader} */>
-              <Text style={commonStyles.modalTitle}>
-                {selectedItem?.title || "상세정보"}
-              </Text>
+              <Text style={commonStyles.modalTitle}>{selectedItem?.title || "상세정보"}</Text>
               <TouchableOpacity onPress={closeModal}>
                 <Text style={{ fontSize: 18 }}>✕</Text>
               </TouchableOpacity>
             </View>
-            <Text style={commonStyles.modalContent}>
-              {selectedItem?.content || ""}
-            </Text>
+            <Text style={commonStyles.modalContent}>{selectedItem?.content || ""}</Text>
             <View /* style={commonStyles.modalButtons} */>
               <TouchableOpacity style={commonStyles.cancelButton}>
                 <Text style={{ color: "#fff" }}>기소 취하</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={commonStyles.closeButton}
-                onPress={closeModal}
-              >
+              <TouchableOpacity style={commonStyles.closeButton} onPress={closeModal}>
                 <Text style={{ color: "#000" }}>닫기</Text>
               </TouchableOpacity>
             </View>

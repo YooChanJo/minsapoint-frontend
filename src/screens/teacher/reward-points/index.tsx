@@ -46,9 +46,7 @@ export default function TeacherRewardPointsScreen() {
         <View style={commonStyles.formBox}>
           {/* 입력 필드랑 Picker들 */}
           <Text style={commonStyles.label}>활동 내역</Text>
-          <View style={commonStyles.inputWrapper}>
-            {/* 여기에 TextInput 넣으면 돼 */}
-          </View>
+          <View style={commonStyles.inputWrapper}>{/* 여기에 TextInput 넣으면 돼 */}</View>
 
           <Text style={commonStyles.label}>분류</Text>
           <View style={commonStyles.pickerWrapper}>

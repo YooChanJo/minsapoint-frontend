@@ -13,20 +13,11 @@ interface TeacherMenuItemProps {
   screen: string; // the screen this leads too
 }
 
-function TeacherMenuItem({
-  icon,
-  title,
-  subtitle,
-  screen,
-}: TeacherMenuItemProps) {
+function TeacherMenuItem({ icon, title, subtitle, screen }: TeacherMenuItemProps) {
   const { commonStyles } = useUiStyles();
 
   return (
-    <LinkWrapper
-      style={commonStyles.menuItem}
-      screen={screen}
-      touchableOpacity={true}
-    >
+    <LinkWrapper style={commonStyles.menuItem} screen={screen} touchableOpacity={true}>
       <View style={commonStyles.iconWithText}>
         {icon}
         <View style={{ marginLeft: 12 }}>

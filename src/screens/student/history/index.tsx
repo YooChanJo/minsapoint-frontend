@@ -59,10 +59,7 @@ export default function StudentHistoryScreen() {
         data={sampleData}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            style={commonStyles.itemCard}
-            onPress={() => handleItemPress(item)}
-          >
+          <TouchableOpacity style={commonStyles.itemCard} onPress={() => handleItemPress(item)}>
             <Text style={commonStyles.itemTitle}>{item.title}</Text>
             <Text style={commonStyles.itemSub}>{item.content}</Text>
           </TouchableOpacity>
@@ -70,22 +67,13 @@ export default function StudentHistoryScreen() {
       />
 
       {/* Modal */}
-      <Modal
-        visible={modalVisible}
-        transparent
-        animationType="fade"
-        onRequestClose={closeModal}
-      >
+      <Modal visible={modalVisible} transparent animationType="fade" onRequestClose={closeModal}>
         <TouchableWithoutFeedback onPress={closeModal}>
           <View style={commonStyles.modalBackdrop}>
             <TouchableWithoutFeedback>
               <View style={commonStyles.modalBox}>
-                <Text style={commonStyles.modalTitle}>
-                  {selectedItem?.title}
-                </Text>
-                <Text style={commonStyles.modalContent}>
-                  {selectedItem?.content || ""}
-                </Text>
+                <Text style={commonStyles.modalTitle}>{selectedItem?.title}</Text>
+                <Text style={commonStyles.modalContent}>{selectedItem?.content || ""}</Text>
               </View>
             </TouchableWithoutFeedback>
           </View>

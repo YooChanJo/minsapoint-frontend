@@ -25,11 +25,7 @@ export default function StudentHomeScreen() {
       </View>
 
       {/* 알림 아이콘 */}
-      <LinkWrapper
-        screen="StudentAlerts"
-        style={commonStyles.notification}
-        touchableOpacity={true}
-      >
+      <LinkWrapper screen="StudentAlerts" style={commonStyles.notification} touchableOpacity={true}>
         <Ionicons name="notifications-outline" size={28} color="black" />
         <View style={commonStyles.notificationBadge}>
           <Text style={commonStyles.notificationText}>3</Text>

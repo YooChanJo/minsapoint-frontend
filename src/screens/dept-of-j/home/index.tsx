@@ -25,31 +25,17 @@ export default function DeptOfJHomeScreen() {
         <Switch onValueChange={toggleSwitch} value={isEnabled} />
       </View>
 
-      <TouchableOpacity
-        style={commonStyles.button}
-        onPress={() => handlePress("버튼 1")}
-      >
+      <TouchableOpacity style={commonStyles.button} onPress={() => handlePress("버튼 1")}>
         <Text style={commonStyles.buttonText}>기소 리스트 다운받기</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={commonStyles.button}
-        onPress={() => handlePress("버튼 2")}
-      >
+      <TouchableOpacity style={commonStyles.button} onPress={() => handlePress("버튼 2")}>
         <Text style={commonStyles.buttonText}>기소 리스트 알림 보내기</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={commonStyles.button}
-        onPress={() => handlePress("버튼 3")}
-      >
+      <TouchableOpacity style={commonStyles.button} onPress={() => handlePress("버튼 3")}>
         <Text style={commonStyles.buttonText}>누계 파일 업로드</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={commonStyles.button}
-        onPress={() => handlePress("버튼 4")}
-      >
-        <Text style={commonStyles.buttonText}>
-          법정 좌석 리스트 업로드 버튼
-        </Text>
+      <TouchableOpacity style={commonStyles.button} onPress={() => handlePress("버튼 4")}>
+        <Text style={commonStyles.buttonText}>법정 좌석 리스트 업로드 버튼</Text>
       </TouchableOpacity>
     </View>
   );

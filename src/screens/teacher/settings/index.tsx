@@ -22,10 +22,7 @@ export default function TeacherSettingsScreen() {
       </View>
 
       {/* 로그아웃 버튼 */}
-      <TouchableOpacity
-        style={commonStyles.logoutButton}
-        onPress={handleLogout}
-      >
+      <TouchableOpacity style={commonStyles.logoutButton} onPress={handleLogout}>
         <Text style={commonStyles.logoutButtonText}>로그아웃</Text>
       </TouchableOpacity>
     </View>

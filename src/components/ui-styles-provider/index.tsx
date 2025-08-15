@@ -15,9 +15,7 @@ export interface UiStylesContextType {
   commonStyles: CommonStylesType;
 }
 
-const UiStylesContext = createContext<UiStylesContextType | undefined>(
-  undefined
-);
+const UiStylesContext = createContext<UiStylesContextType | undefined>(undefined);
 
 export function useUiStyles() {
   const context = useContext(UiStylesContext);
@@ -32,10 +30,7 @@ interface UiStylesProviderProps {
   children: ReactNode;
 }
 
-export function UiStylesProvider({
-  colorScheme,
-  children,
-}: UiStylesProviderProps) {
+export function UiStylesProvider({ colorScheme, children }: UiStylesProviderProps) {
   const uiStylesValue: UiStylesContextType | undefined =
     colorScheme === "light" || colorScheme === "dark"
       ? {
@@ -45,12 +40,7 @@ export function UiStylesProvider({
         }
       : undefined;
 
-  if (!uiStylesValue)
-    console.error("Ui Styles Provider error: invalid colorScheme");
+  if (!uiStylesValue) console.error("Ui Styles Provider error: invalid colorScheme");
 
-  return (
-    <UiStylesContext.Provider value={uiStylesValue}>
-      {children}
-    </UiStylesContext.Provider>
-  );
+  return <UiStylesContext.Provider value={uiStylesValue}>{children}</UiStylesContext.Provider>;
 }

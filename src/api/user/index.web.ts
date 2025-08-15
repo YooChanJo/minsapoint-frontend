@@ -1,9 +1,5 @@
 import { firebaseAuth } from "@/src/config/firebase";
-import {
-  signInWithEmailAndPassword,
-  signOut,
-  updatePassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, signOut, updatePassword } from "firebase/auth";
 
 export type BackendUserRole = "STUDENT" | "ACCUSER" | "DEPT_OF_JUSTICE" | "ADMIN";
 

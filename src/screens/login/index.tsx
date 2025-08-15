@@ -54,9 +54,7 @@ function LoginScreen() {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Login screen</Text>
         <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
-          <Text style={{ textAlign: "center" }}>
-            User Logged In: {String(userLoggedIn)}
-          </Text>
+          <Text style={{ textAlign: "center" }}>User Logged In: {String(userLoggedIn)}</Text>
           <Text>AccessToken: {accessToken}</Text>
         </View>
         <View style={{ borderWidth: 1, padding: 20, margin: 10, gap: 10 }}>
@@ -66,10 +64,7 @@ function LoginScreen() {
             value={email}
             placeholder="Enter Email"
             onKeyPress={e => {
-              if (
-                PlatformAPI.getCurrentPlatform() === "web" &&
-                e.code == "Enter"
-              )
+              if (PlatformAPI.getCurrentPlatform() === "web" && e.code == "Enter")
                 onPasswordChangeButtonPress();
             }}
           />
@@ -80,10 +75,7 @@ function LoginScreen() {
             placeholder="Enter Password"
             secureTextEntry={true}
             onKeyPress={e => {
-              if (
-                PlatformAPI.getCurrentPlatform() === "web" &&
-                e.code == "Enter"
-              )
+              if (PlatformAPI.getCurrentPlatform() === "web" && e.code == "Enter")
                 onPasswordChangeButtonPress();
             }}
           />
@@ -97,10 +89,7 @@ function LoginScreen() {
             placeholder="New Password"
             secureTextEntry={true}
             onKeyPress={e => {
-              if (
-                PlatformAPI.getCurrentPlatform() === "web" &&
-                e.code == "Enter"
-              )
+              if (PlatformAPI.getCurrentPlatform() === "web" && e.code == "Enter")
                 onPasswordChangeButtonPress();
             }}
           />
@@ -111,17 +100,11 @@ function LoginScreen() {
             placeholder="New Password Check"
             secureTextEntry={true}
             onKeyPress={e => {
-              if (
-                PlatformAPI.getCurrentPlatform() === "web" &&
-                e.code == "Enter"
-              )
+              if (PlatformAPI.getCurrentPlatform() === "web" && e.code == "Enter")
                 onPasswordChangeButtonPress();
             }}
           />
-          <Button
-            onPress={onPasswordChangeButtonPress}
-            title="Change Password"
-          />
+          <Button onPress={onPasswordChangeButtonPress} title="Change Password" />
         </View>
 
         <Button onPress={onLogOutButtenPress} title="Log Out" />

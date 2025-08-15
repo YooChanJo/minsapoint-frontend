@@ -48,9 +48,7 @@ export default function StudentAlertsScreen() {
             marginVertical: 8,
           }}
         >
-          <TouchableOpacity
-            style={{ flexDirection: "row", alignItems: "center" }}
-          >
+          <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="close-circle-outline" size={20} color="#666" />
             <Text style={{ marginLeft: 4, color: "#666" }}>Clear All</Text>
           </TouchableOpacity>
@@ -82,11 +80,7 @@ export default function StudentAlertsScreen() {
                   alignItems: "center",
                 }}
               >
-                <Ionicons
-                  name="information-circle-outline"
-                  size={18}
-                  color="#555"
-                />
+                <Ionicons name="information-circle-outline" size={18} color="#555" />
                 <Text
                   style={{
                     marginLeft: 6,

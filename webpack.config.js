@@ -60,10 +60,7 @@ const imageLoaderConfiguration = {
 const vectorIconsLoaderConfiguration = {
   test: /\.ttf$/,
   loader: "url-loader", // or directly file-loader
-  include: path.resolve(
-    appDirectory,
-    "node_modules/@react-native-vector-icons"
-  ),
+  include: path.resolve(appDirectory, "node_modules/@react-native-vector-icons"),
 };
 
 module.exports = {
@@ -124,10 +121,7 @@ module.exports = {
       /************************************************************/
       "@": path.resolve(appDirectory), // resolve alias during building
       /* Shim for react native vector icons get image */
-      "@react-native-vector-icons/get-image": path.resolve(
-        appDirectory,
-        "shims/get-image.js"
-      ),
+      "@react-native-vector-icons/get-image": path.resolve(appDirectory, "shims/get-image.js"),
     },
     modules: [path.resolve(appDirectory, "node_modules"), "node_modules"],
   },

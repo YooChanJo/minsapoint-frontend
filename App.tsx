@@ -36,9 +36,7 @@ function HomeScreen() {
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Welcome to Home Screen</Text>
       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
-        <Text style={{ textAlign: "center" }}>
-          User Logged In: {String(userLoggedIn)}
-        </Text>
+        <Text style={{ textAlign: "center" }}>User Logged In: {String(userLoggedIn)}</Text>
       </View>
       <View style={{ borderWidth: 1, padding: 20, margin: 10 }}>
         <LinkWrapper screen="StudentHome">
@@ -103,14 +101,8 @@ function RootStack() {
       <Stack.Screen name="TeacherHome" component={TeacherHomeScreen} />
       <Stack.Screen name="TeacherSettings" component={TeacherSettingsScreen} />
       <Stack.Screen name="TeacherHistory" component={TeacherHistoryScreen} />
-      <Stack.Screen
-        name="TeacherPenaltyPoints"
-        component={TeacherPenaltyPointsScreen}
-      />
-      <Stack.Screen
-        name="TeacherRewardPoints"
-        component={TeacherRewardPointsScreen}
-      />
+      <Stack.Screen name="TeacherPenaltyPoints" component={TeacherPenaltyPointsScreen} />
+      <Stack.Screen name="TeacherRewardPoints" component={TeacherRewardPointsScreen} />
 
       <Stack.Screen name="DeptOfJHome" component={DeptOfJHomeScreen} />
 
@@ -126,10 +118,7 @@ function App() {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer
-        linking={AppLinking}
-        fallback={<Text>Loading...</Text>}
-      >
+      <NavigationContainer linking={AppLinking} fallback={<Text>Loading...</Text>}>
         <AuthProvider>
           <UiStylesProvider colorScheme={colorScheme}>
             <RootStack />
