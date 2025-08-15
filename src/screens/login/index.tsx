@@ -65,7 +65,7 @@ function LoginScreen() {
             placeholder="Enter Email"
             onKeyPress={e => {
               if (PlatformAPI.getCurrentPlatform() === "web" && e.code == "Enter")
-                onPasswordChangeButtonPress();
+                OnLoginButtenPress();
             }}
           />
           <TextInput
@@ -76,7 +76,7 @@ function LoginScreen() {
             secureTextEntry={true}
             onKeyPress={e => {
               if (PlatformAPI.getCurrentPlatform() === "web" && e.code == "Enter")
-                onPasswordChangeButtonPress();
+                OnLoginButtenPress();
             }}
           />
           <Button onPress={OnLoginButtenPress} title="Login Button" />

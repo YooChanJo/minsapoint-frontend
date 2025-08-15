@@ -29,6 +29,7 @@ import TeacherHistoryScreen from "./src/screens/teacher/history";
 import TeacherPenaltyPointsScreen from "./src/screens/teacher/penalty-points";
 import TeacherRewardPointsScreen from "./src/screens/teacher/reward-points";
 import DeptOfJHomeScreen from "./src/screens/dept-of-j/home";
+import HTTPRequestAPI from "./src/api/http-request";
 
 function HomeScreen() {
   const { userLoggedIn } = useAuth();
@@ -65,9 +66,11 @@ function PlatformCheckScreen({ route }: { route: any }) {
   const { myParam } = route.params;
 
   NavigationAPI.useCompatibleEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos/1")
-      .then(response => response.json())
-      .then(json => alert(JSON.stringify(json)));
+    async function init() {
+      const result = await HTTPRequestAPI.normal.get("https://jsonplaceholder.typicode.com/todos/1")
+      console.log(result ? result.data : result);
+    }
+    init();
   }, []);
 
   return (
