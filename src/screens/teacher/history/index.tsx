@@ -1,6 +1,13 @@
 import { useUiStyles } from "@/src/components/ui-styles-provider";
 import React, { useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, Modal } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Modal,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 const sampleData = [
   {
@@ -61,38 +68,35 @@ export default function TeacherHistoryScreen() {
       />
 
       {/* Modal */}
+
       <Modal
         visible={modalVisible}
         transparent
         animationType="fade"
         onRequestClose={closeModal}
       >
-        <View style={commonStyles.modalBackdrop}>
-          <View style={commonStyles.modalBox}>
-            <View /* style={commonStyles.modalHeader} */>
-              <Text style={commonStyles.modalTitle}>
-                {selectedItem?.title || "상세정보"}
-              </Text>
-              <TouchableOpacity onPress={closeModal}>
-                <Text style={{ fontSize: 18 }}>✕</Text>
-              </TouchableOpacity>
-            </View>
-            <Text style={commonStyles.modalContent}>
-              {selectedItem?.content || ""}
-            </Text>
-            <View /* style={commonStyles.modalButtons} */>
-              <TouchableOpacity style={commonStyles.cancelButton}>
-                <Text style={{ color: "#fff" }}>기소 취하</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={commonStyles.closeButton}
-                onPress={closeModal}
-              >
-                <Text style={{ color: "#000" }}>닫기</Text>
-              </TouchableOpacity>
-            </View>
+        <TouchableWithoutFeedback onPress={closeModal}>
+          <View style={commonStyles.modalBackdrop}>
+            <TouchableWithoutFeedback onPress={() => {}}>
+              {/* Prevent closing when clicking inside modal box */}
+              <View style={commonStyles.modalBox}>
+                <View /* style={commonStyles.modalHeader} */>
+                  <Text style={commonStyles.modalTitle}>
+                    {selectedItem?.title || "상세정보"}
+                  </Text>
+                </View>
+                <Text style={commonStyles.modalContent}>
+                  {selectedItem?.content || ""}
+                </Text>
+                <View /* style={commonStyles.modalButtons} */>
+                  <TouchableOpacity style={commonStyles.cancelButton}>
+                    <Text>기소 취하</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </Modal>
     </View>
   );

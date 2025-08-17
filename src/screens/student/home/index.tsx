@@ -19,7 +19,11 @@ export default function StudentHomeScreen() {
             style={commonStyles.settingsIcon}
             touchableOpacity={true}
           >
-            <Ionicons name="settings-outline" size={30} color="#333" />
+            <Ionicons
+              name="settings-outline"
+              size={30}
+              style={commonStyles.icon}
+            />
           </LinkWrapper>
         </View>
       </View>
@@ -30,7 +34,11 @@ export default function StudentHomeScreen() {
         style={commonStyles.notification}
         touchableOpacity={true}
       >
-        <Ionicons name="notifications-outline" size={28} color="black" />
+        <Ionicons
+          name="notifications-outline"
+          size={28}
+          style={commonStyles.icon}
+        />
         <View style={commonStyles.notificationBadge}>
           <Text style={commonStyles.notificationText}>3</Text>
         </View>
@@ -58,8 +66,10 @@ export default function StudentHomeScreen() {
           <Text style={commonStyles.buttonText}>History</Text>
         </LinkWrapper>
       </View>
-      <View style={commonStyles.button}>
-        <Text>이번주 법정 대상자입니다</Text>
+      <View style={commonStyles.infoBoxUserHome}>
+        <Text style={commonStyles.infoBoxUserHomeText}>
+          이번주 법정 대상자입니다
+        </Text>
       </View>
     </View>
   );

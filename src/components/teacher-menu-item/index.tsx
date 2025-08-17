@@ -19,8 +19,7 @@ function TeacherMenuItem({
   subtitle,
   screen,
 }: TeacherMenuItemProps) {
-  const { commonStyles } = useUiStyles();
-
+  const { commonStyles, colors } = useUiStyles();
   return (
     <LinkWrapper
       style={commonStyles.menuItem}
@@ -34,7 +33,7 @@ function TeacherMenuItem({
           <Text style={commonStyles.menuSubtitle}>{subtitle}</Text>
         </View>
       </View>
-      <Ionicons name="chevron-forward" size={20} color="black" />
+      <Ionicons name="chevron-forward" size={20} color={colors.text} />
     </LinkWrapper>
   );
 }

@@ -42,43 +42,43 @@ const tintColorDark = "#FFFFFF";
 export const Colors: ColorStyleSetType = {
   light: {
     text: "#11181C",
-    background: "#FFFFFF",
+    background: "#F7F8FA", // Softer off-white background
     tint: tintColorLight,
     icon: "#687076",
     tabIconDefault: "#687076",
     tabIconSelected: tintColorLight,
-    border: "#CCCCCC",
-    card: "#F8F9FA",
+    border: "#DDDDDD",
+    card: "#FFFFFF", // Keep cards pure white for contrast
     button: "#000000",
     buttonText: "#FFFFFF",
     success: "#2ECC71",
     error: "#E74C3C",
     notificationBadge: "#E74C3C",
     notificationText: "#FFFFFF",
-    menuItemBottomColor: "#EEEEEE",
+    menuItemBottomColor: "#F0F0F0", // Slightly lighter divider
     warning: "#F39C12",
-    inputBackground: "#F1F3F5",
-    inputText: "#11181C",
+    inputBackground: "#ffffffff", // Light input field background
+    inputText: "#11181C", // Dark text on light input
   },
   dark: {
-    text: "#ECEDEE",
-    background: "#151718",
+    text: "#F7F8FA",
+    background: "#2c2a2aff", // Deep gray background (OLED-friendly but less harsh than pure black)
     tint: tintColorDark,
-    icon: "#9BA1A6",
-    tabIconDefault: "#9BA1A6",
-    tabIconSelected: tintColorDark,
+    icon: "#CCCCCC", // Light gray icons for visibility
+    tabIconDefault: "#888888", // Medium gray for unselected tabs
+    tabIconSelected: "#FFFFFF", // White for selected tab highlight
     border: "#2E2F31",
-    card: "#1F2022",
+    card: "#1E1E1E", // Slightly lighter gray for cards
     button: "#FFFFFF",
-    buttonText: "#0A7EA4",
+    buttonText: "#2e2d2dff",
     success: "#2ECC71",
     error: "#E74C3C",
     notificationBadge: "#E74C3C",
     notificationText: "#FFFFFF",
-    menuItemBottomColor: "#2A2B2D",
+    menuItemBottomColor: "#1A1A1A", // Slight divider gray
     warning: "#F39C12",
-    inputBackground: "#1C1E20",
-    inputText: "#ECEDEE",
+    inputBackground: "#2c2a2aff", // Dark gray input background
+    inputText: "#ECEDEE", // Light text on dark input
   },
 };
 
@@ -150,6 +150,7 @@ export interface CommonStylesType {
   modalBackdrop: ViewStyle;
   modalBox: ViewStyle;
   modalTitle: TextStyle;
+  modalClose: TextStyle;
   modalContent: TextStyle;
   cancelButton: ViewStyle;
   closeButton: ViewStyle;
@@ -166,7 +167,11 @@ export interface CommonStylesType {
   headerLeft: ViewStyle;
   headerRight: ViewStyle;
   formBox: ViewStyle;
-  pickerWrapper: ViewStyle;
+  infoBoxUserHome: ViewStyle;
+  infoBoxUserHomeText: TextStyle;
+  icon: TextStyle;
+  modalHeader: ViewStyle;
+  iconButton: TextStyle;
 }
 
 function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
@@ -177,15 +182,19 @@ function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
       backgroundColor: colors.background,
       paddingHorizontal: 24,
     },
+    icon: {
+      backgroundColor: colors.background,
+      color: colors.icon,
+    },
     /* A View element wrapping input element */
     inputWrapper: {
+      backgroundColor: colors.inputBackground,
+      borderRadius: 12,
       borderWidth: 1,
       borderColor: colors.border,
-      borderRadius: 8,
-      paddingHorizontal: 12,
-      paddingVertical: 8,
-      marginBottom: 16,
-      backgroundColor: colors.background,
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+      marginBottom: 12,
     },
     /* Text input element */
     input: {
@@ -267,17 +276,42 @@ function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
     },
     /* Button background */
     button: {
-      backgroundColor: colors.button,
-      borderRadius: 8,
-      paddingVertical: 20,
-      marginTop: 30,
+      flexDirection: "row", // 아이콘 + 텍스트
+      justifyContent: "center",
       alignItems: "center",
+      backgroundColor: colors.button,
+      paddingVertical: 16,
+      borderRadius: 12,
+      marginTop: 16,
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.1,
+      shadowRadius: 6,
+      elevation: 2,
     },
+    infoBoxUserHome: {
+      backgroundColor: colors.background,
+      borderRadius: 8,
+
+      minHeight: 80, // enforce a box height
+      alignItems: "center", // horizontal center
+      justifyContent: "center", // vertical center
+    },
+
+    infoBoxUserHomeText: {
+      textAlign: "center", // center align text
+      fontWeight: "bold", // make text bold
+      fontSize: 16, // optional: adjust size
+      marginTop: 30,
+      color: colors.text, // use theme text color
+    },
+
     /* Text inside button */
     buttonText: {
       ...Fonts.bold,
       color: colors.buttonText,
-      paddingHorizontal: 25,
+      fontSize: 16,
+      marginLeft: 8, // 아이콘과 간격
     },
     /* A View element containing teacher profile */
     profileRow: {
@@ -305,10 +339,21 @@ function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
     settingsIcon: {
       marginLeft: 8,
       marginTop: 20,
-      backgroundColor: colors.card,
+      backgroundColor: colors.background,
       padding: 6,
-      borderRadius: 20,
     },
+    modalHeader: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 16, // optional spacing
+    },
+    modalClose: {
+      position: "absolute", // absolute positioning
+      right: 12, // right offset inside modal box
+      zIndex: 30, // ensure it's above other content
+    },
+
     summaryBox: {
       marginBottom: 24,
     },
@@ -332,7 +377,7 @@ function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
       paddingVertical: 18,
       justifyContent: "space-between",
       borderBottomWidth: 1,
-      borderBottomColor: colors.menuItemBottomColor,
+      borderBottomColor: colors.icon,
     },
     iconWithText: {
       flexDirection: "row",
@@ -354,7 +399,7 @@ function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
     },
     grayLabel: {
       color: colors.icon,
-      fontSize: 16,
+      fontSize: 18,
       marginBottom: 8,
     },
     bigScore: {
@@ -372,7 +417,7 @@ function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
       width: 120,
     },
     label: {
-      fontSize: 18,
+      fontSize: 20,
       color: colors.text,
     },
     value: {
@@ -407,9 +452,13 @@ function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
       marginBottom: 15,
       color: colors.text,
     },
+    iconButton: {
+      size: 24, // 기본 아이콘 크기
+      color: colors.buttonText, // 버튼 텍스트 색상과 동일
+    },
     cancelButton: {
       backgroundColor: colors.tint,
-      paddingVertical: 8,
+      paddingVertical: 4,
       paddingHorizontal: 14,
       borderRadius: 6,
       marginRight: 8,
@@ -484,17 +533,15 @@ function createCommonStyles(colors: typeof Colors.light): CommonStylesType {
       alignItems: "center",
     },
     formBox: {
-      backgroundColor: colors.inputBackground,
-      padding: 20,
-      borderRadius: 12,
-      gap: 12,
-    },
-    pickerWrapper: {
-      borderWidth: 1,
-      borderColor: colors.border,
-      borderRadius: 8,
-      overflow: "hidden",
-      marginBottom: 12,
+      backgroundColor: colors.card, // 카드 느낌
+      borderRadius: 16, // 부드러운 모서리
+      padding: 24, // 충분한 패딩
+      gap: 16, // 아이템 간 간격
+      shadowColor: "#000", // 그림자
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
+      elevation: 3, // Android 그림자
     },
   };
 }

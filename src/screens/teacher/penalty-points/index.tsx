@@ -30,9 +30,6 @@ export default function TeacherPenaltyPointsScreen() {
             source={{ uri: "https://via.placeholder.com/40" }}
             style={commonStyles.profileImage}
           />
-          <View style={{ marginLeft: 8 }}>
-            <Text style={commonStyles.profileName}>왕두균</Text>
-          </View>
         </View>
       </View>
 
@@ -43,7 +40,7 @@ export default function TeacherPenaltyPointsScreen() {
       <View style={commonStyles.formBox}>
         {/* 기소 항목 */}
         <Text style={commonStyles.label}>기소 항목</Text>
-        <View style={commonStyles.pickerWrapper}>
+        <View>
           <Picker
             selectedValue={selectedCategory}
             onValueChange={itemValue => setSelectedCategory(itemValue)}
@@ -56,7 +53,7 @@ export default function TeacherPenaltyPointsScreen() {
 
         {/* 부과 벌점 선택 */}
         <Text style={commonStyles.label}>부과 벌점 선택</Text>
-        <View style={commonStyles.pickerWrapper}>
+        <View>
           <Picker
             selectedValue={selectedPenalty}
             onValueChange={itemValue => setSelectedPenalty(itemValue)}
@@ -69,7 +66,7 @@ export default function TeacherPenaltyPointsScreen() {
 
         {/* 기소 학생 목록 */}
         <Text style={commonStyles.label}>기소 학생 목록</Text>
-        <View style={commonStyles.pickerWrapper}>
+        <View>
           <Picker
             selectedValue={selectedStudent}
             onValueChange={itemValue => setSelectedStudent(itemValue)}
@@ -82,7 +79,11 @@ export default function TeacherPenaltyPointsScreen() {
 
         {/* Add button */}
         <TouchableOpacity style={commonStyles.button}>
-          <Ionicons name="person-add" size={24} color="black" />
+          <Ionicons
+            name="person-add"
+            size={24}
+            color={commonStyles.iconButton.color}
+          />
         </TouchableOpacity>
 
         {/* Submit button */}

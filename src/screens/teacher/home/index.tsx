@@ -23,10 +23,6 @@ export default function TeacherHomeScreen() {
         >
           <Ionicons name="settings" size={20} color={colors.text} />
         </LinkWrapper>
-
-        <View style={{ marginLeft: 8 }}>
-          <Text style={commonStyles.profileName}>왕두균 선생님</Text>
-        </View>
       </View>
 
       {/* Stats */}
@@ -43,19 +39,19 @@ export default function TeacherHomeScreen() {
       {/* Menu Items */}
       <View style={commonStyles.menuWrapper}>
         <TeacherMenuItem
-          icon={<MaterialIcons name="history" size={28} color="black" />}
+          icon={<MaterialIcons name="history" size={28} color={colors.text} />}
           title="History"
           subtitle="기소항목 & 상점 추천 히스토리"
           screen="TeacherHistory"
         />
         <TeacherMenuItem
-          icon={<Ionicons name="sunny" size={28} color="black" />}
+          icon={<Ionicons name="sunny" size={28} color={colors.text} />}
           title="Reward Points"
           subtitle="상점 추천"
           screen="TeacherRewardPoints"
         />
         <TeacherMenuItem
-          icon={<Ionicons name="rainy" size={28} color="black" />}
+          icon={<Ionicons name="rainy" size={28} color={colors.text} />}
           title="Penalty Points"
           subtitle="기소"
           screen="TeacherPenaltyPoints"
