@@ -29,8 +29,8 @@ import TeacherHistoryScreen from "./src/screens/teacher/history";
 import TeacherPenaltyPointsScreen from "./src/screens/teacher/penalty-points";
 import TeacherRewardPointsScreen from "./src/screens/teacher/reward-points";
 import DeptOfJHomeScreen from "./src/screens/dept-of-j/home";
-import HTTPRequestAPI from "./src/api/http-request";
 import UserAPI from "./src/api/user";
+import { RouteProtector } from "./src/components/route-protector";
 
 function HomeScreen() {
   const { userLoggedIn } = useAuth();
@@ -69,10 +69,12 @@ function PlatformCheckScreen({ route }: { route: any }) {
 
   NavigationAPI.useCompatibleEffect(() => {
     async function init() {
-      const result = await HTTPRequestAPI.normal.get("/");
-      const currentUserInfo = await UserAPI.getCurrentUserInfo(accessToken);
-      console.log(result);
-      console.log(currentUserInfo);
+      try {
+        const currentUserInfo = await UserAPI.getCurrentUserInfo(accessToken);
+        console.log(currentUserInfo);
+      } catch (e) {
+        console.error("Error: ", e);
+      }
     }
     init();
   }, []);
@@ -100,18 +102,42 @@ function RootStack() {
         initialParams={{ myParam: "My Param" }}
       />
 
-      <Stack.Screen name="StudentHome" component={StudentHomeScreen} />
-      <Stack.Screen name="StudentSettings" component={StudentSettingsScreen} />
-      <Stack.Screen name="StudentHistory" component={StudentHistoryScreen} />
-      <Stack.Screen name="StudentAlerts" component={StudentAlertsScreen} />
+      <Stack.Screen name="StudentHome" component={RouteProtector(StudentHomeScreen, "STUDENT")} />
+      <Stack.Screen
+        name="StudentSettings"
+        component={RouteProtector(StudentSettingsScreen, "STUDENT")}
+      />
+      <Stack.Screen
+        name="StudentHistory"
+        component={RouteProtector(StudentHistoryScreen, "STUDENT")}
+      />
+      <Stack.Screen
+        name="StudentAlerts"
+        component={RouteProtector(StudentAlertsScreen, "STUDENT")}
+      />
 
-      <Stack.Screen name="TeacherHome" component={TeacherHomeScreen} />
-      <Stack.Screen name="TeacherSettings" component={TeacherSettingsScreen} />
-      <Stack.Screen name="TeacherHistory" component={TeacherHistoryScreen} />
-      <Stack.Screen name="TeacherPenaltyPoints" component={TeacherPenaltyPointsScreen} />
-      <Stack.Screen name="TeacherRewardPoints" component={TeacherRewardPointsScreen} />
+      <Stack.Screen name="TeacherHome" component={RouteProtector(TeacherHomeScreen, "ACCUSER")} />
+      <Stack.Screen
+        name="TeacherSettings"
+        component={RouteProtector(TeacherSettingsScreen, "ACCUSER")}
+      />
+      <Stack.Screen
+        name="TeacherHistory"
+        component={RouteProtector(TeacherHistoryScreen, "ACCUSER")}
+      />
+      <Stack.Screen
+        name="TeacherPenaltyPoints"
+        component={RouteProtector(TeacherPenaltyPointsScreen, "ACCUSER")}
+      />
+      <Stack.Screen
+        name="TeacherRewardPoints"
+        component={RouteProtector(TeacherRewardPointsScreen, "ACCUSER")}
+      />
 
-      <Stack.Screen name="DeptOfJHome" component={DeptOfJHomeScreen} />
+      <Stack.Screen
+        name="DeptOfJHome"
+        component={RouteProtector(DeptOfJHomeScreen, "DEPT_OF_JUSTICE")}
+      />
 
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} />

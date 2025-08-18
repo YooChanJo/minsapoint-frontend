@@ -56,5 +56,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     accessToken,
   };
 
+  /* TODO: Handling of case when loading persists is needed, z.B. when no wifi error happens */
   return <AuthContext.Provider value={authValue}>{!loading && children}</AuthContext.Provider>;
 }

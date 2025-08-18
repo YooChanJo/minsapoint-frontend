@@ -10,8 +10,7 @@ export interface BackendUser {
   role: BackendUserRole;
   name: string;
   studentNumber?: number;
-  schoolPoints?: number;
-  dormPoints?: number;
+  penaltyPoints?: number;
   rewardPoints?: number;
   hasCourt?: boolean;
 }
@@ -50,7 +49,8 @@ const UserAPI: {
   },
   getCurrentUserInfo: async (accessToken: string): Promise<BackendUser> => {
     try {
-      return await HTTPRequestAPI.private.get("/api/user", accessToken);
+      const response = await HTTPRequestAPI.private.get("/api/me", accessToken);
+      return response.data;
     } catch (e) {
       console.error("UserAPI: getCurrentUserInfo Func: ", e);
       throw e;
