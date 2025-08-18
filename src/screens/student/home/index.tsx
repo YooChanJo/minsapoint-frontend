@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { Text, View } from "react-native";
 
 import { useUiStyles } from "@/src/components/ui-styles-provider";
 import LinkWrapper from "@/src/components/link-wrapper";
+import NavigationAPI from "@/src/api/navigation";
+import UserAPI from "@/src/api/user";
+import { useAuth } from "@/src/components/auth-provider";
 
+/* TODO: Perhaps add a loading symbol or somehow --> this applies to all screens */
 export default function StudentHomeScreen() {
   const { commonStyles } = useUiStyles();
+  const { accessToken } = useAuth();
+
+  const [penaltyPoints, setPenaltyPoints] = useState<number | undefined>(undefined);
+  const [rewardPoints, setRewardPoints] = useState<number | undefined>(undefined);
+  const [hasCourt, setHasCourt] = useState<boolean | undefined>(undefined);
+
+  NavigationAPI.useCompatibleEffect(() => {
+    async function init() {
+      try {
+        const currentUserInfo = await UserAPI.getCurrentUserInfo(accessToken);
+        setPenaltyPoints(currentUserInfo.penaltyPoints);
+        setRewardPoints(currentUserInfo.rewardPoints);
+        setHasCourt(currentUserInfo.hasCourt);
+      } catch (e) {
+        console.error("Failed to fetch current user info: ", e);
+      }
+    }
+    init();
+  });
 
   return (
     <View style={commonStyles.container}>
@@ -34,16 +57,18 @@ export default function StudentHomeScreen() {
       {/* 중앙 점수 정보 */}
       <View style={commonStyles.scoreSection}>
         <Text style={commonStyles.grayLabel}>누계</Text>
-        <Text style={commonStyles.bigScore}>13</Text>
+        <Text style={commonStyles.bigScore}>
+          {!penaltyPoints || !rewardPoints || penaltyPoints - rewardPoints}
+        </Text>
 
         <View style={commonStyles.subScores}>
           <View style={commonStyles.scoreItem}>
             <Text style={commonStyles.label}>벌점</Text>
-            <Text style={commonStyles.value}>25</Text>
+            <Text style={commonStyles.value}>{penaltyPoints}</Text>
           </View>
           <View style={commonStyles.scoreItem}>
             <Text style={commonStyles.label}>상점</Text>
-            <Text style={commonStyles.value}>12</Text>
+            <Text style={commonStyles.value}>{rewardPoints}</Text>
           </View>
         </View>
         <LinkWrapper
@@ -55,7 +80,9 @@ export default function StudentHomeScreen() {
         </LinkWrapper>
       </View>
       <View style={commonStyles.infoBoxUserHome}>
-        <Text style={commonStyles.infoBoxUserHomeText}>이번주 법정 대상자입니다</Text>
+        <Text style={commonStyles.infoBoxUserHomeText}>
+          {hasCourt ? "이번주 법정 대상자입니다" : "이번주 법정 대상자가 아닙니다"}
+        </Text>
       </View>
     </View>
   );

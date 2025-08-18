@@ -5,6 +5,7 @@ import UserAPI, { BackendUserRole } from "@/src/api/user";
 
 /*
   Login screen for new users
+  TODO: navigation.replace only replaces one element, and yeah when two or more errors occur, might want handling
 */
 function RouteProtector(Screen: FC, role: BackendUserRole) {
   function ProtectedScreen(props: any) {
