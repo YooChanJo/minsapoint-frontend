@@ -32,9 +32,6 @@ export default function TeacherRewardPointsScreen() {
             source={{ uri: "https://via.placeholder.com/40" }}
             style={commonStyles.profileImage}
           />
-          <View style={{ marginLeft: 8 }}>
-            <Text style={commonStyles.profileName}>왕두균</Text>
-          </View>
         </View>
       </View>
       {/* 아래 부분은 스크롤 가능 */}
@@ -49,18 +46,18 @@ export default function TeacherRewardPointsScreen() {
           <View style={commonStyles.inputWrapper}>{/* 여기에 TextInput 넣으면 돼 */}</View>
 
           <Text style={commonStyles.label}>분류</Text>
-          <View style={commonStyles.pickerWrapper}>
+          <View>
             <Picker
               selectedValue={selectedCategory}
               onValueChange={itemValue => setSelectedCategory(itemValue)}
             >
-              <Picker.Item label="선택하기" value="" />
+              <Picker.Item label="선택하기" value="" style={{ fontSize: 16 }} />
               <Picker.Item label="도움" value="help" />
             </Picker>
           </View>
 
           <Text style={commonStyles.label}>활동 장소 및 시간</Text>
-          <View style={commonStyles.pickerWrapper}>
+          <View>
             <Picker
               selectedValue={selectedPenalty}
               onValueChange={itemValue => setSelectedPenalty(itemValue)}
@@ -69,7 +66,7 @@ export default function TeacherRewardPointsScreen() {
             </Picker>
           </View>
 
-          <View style={commonStyles.pickerWrapper}>
+          <View>
             <Picker
               selectedValue={selectedStudent}
               onValueChange={itemValue => setSelectedStudent(itemValue)}
@@ -79,7 +76,7 @@ export default function TeacherRewardPointsScreen() {
           </View>
 
           <Text style={commonStyles.label}>상점 추천 학생 목록</Text>
-          <View style={commonStyles.pickerWrapper}>
+          <View>
             <Picker
               selectedValue={selectedStudent}
               onValueChange={itemValue => setSelectedStudent(itemValue)}
@@ -90,7 +87,7 @@ export default function TeacherRewardPointsScreen() {
 
           {/* 추가 버튼 */}
           <TouchableOpacity style={commonStyles.button}>
-            <Ionicons name="person-add" size={24} color="black" />
+            <Ionicons name="person-add" size={24} color="white" />
           </TouchableOpacity>
 
           {/* 제출 버튼 */}

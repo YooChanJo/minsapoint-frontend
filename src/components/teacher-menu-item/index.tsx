@@ -14,8 +14,7 @@ interface TeacherMenuItemProps {
 }
 
 function TeacherMenuItem({ icon, title, subtitle, screen }: TeacherMenuItemProps) {
-  const { commonStyles } = useUiStyles();
-
+  const { colors, commonStyles } = useUiStyles();
   return (
     <LinkWrapper style={commonStyles.menuItem} screen={screen} touchableOpacity={true}>
       <View style={commonStyles.iconWithText}>
@@ -25,7 +24,7 @@ function TeacherMenuItem({ icon, title, subtitle, screen }: TeacherMenuItemProps
           <Text style={commonStyles.menuSubtitle}>{subtitle}</Text>
         </View>
       </View>
-      <Ionicons name="chevron-forward" size={20} color="black" />
+      <Ionicons name="chevron-forward" size={20} color={colors.text} />
     </LinkWrapper>
   );
 }
