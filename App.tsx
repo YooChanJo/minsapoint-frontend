@@ -5,7 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Text, useColorScheme, View } from "react-native";
 
 /* Configs */
-import { AppLinking } from "./src/config/deep-linking";
+import { AppLinking, RootStackParamList } from "./src/config/deep-linking";
 
 /* APIs */
 import PlatformAPI from "./src/api/platform";
@@ -90,7 +90,7 @@ function PlatformCheckScreen({ route }: { route: any }) {
   );
 }
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootStack() {
   return (
     /* Debug screens */

@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 import NavigationAPI from "@/src/api/navigation";
 import UserAPI, { BackendUserRole } from "@/src/api/user";
 
+/* Need distinction between wifi & server error etc --> add error handling */
 /*
   Login screen for new users
   TODO: navigation.replace only replaces one element, and yeah when two or more errors occur, might want handling

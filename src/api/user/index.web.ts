@@ -15,12 +15,7 @@ export interface BackendUser {
   hasCourt?: boolean;
 }
 
-const UserAPI: {
-  signUserIn: Function;
-  signUserOut: Function;
-  changeUserPassword: Function;
-  getCurrentUserInfo: Function;
-} = {
+const UserAPI = {
   signUserIn: async (email: string, password: string) => {
     try {
       return await signInWithEmailAndPassword(firebaseAuth, email, password);
@@ -53,6 +48,15 @@ const UserAPI: {
       return response.data;
     } catch (e) {
       console.error("UserAPI: getCurrentUserInfo Func: ", e);
+      throw e;
+    }
+  },
+  getUserNameFromID: async (id: string, accessToken: string): Promise<string> => {
+    try {
+      const response = await HTTPRequestAPI.private.get(`/api/user/name/${id}`, accessToken);
+      return response.data;
+    } catch (e) {
+      console.error("UserAPI: getUserNameFromID Func: ", e);
       throw e;
     }
   },

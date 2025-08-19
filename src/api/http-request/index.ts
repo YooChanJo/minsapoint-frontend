@@ -22,10 +22,7 @@ interface AxiosConfigType {
   [key: string]: any; // any other property allowed
 }
 
-const HTTPRequestAPI: {
-  normal: { get: Function; post: Function };
-  private: { get: Function; post: Function };
-} = {
+const HTTPRequestAPI = {
   normal: {
     get: (url: string, config?: AxiosConfigType) => axios.get(parseAPIRequestURL(url), config),
     post: (url: string, data: any, config?: AxiosConfigType) =>
